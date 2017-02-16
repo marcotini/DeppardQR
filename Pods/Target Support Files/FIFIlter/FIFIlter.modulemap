@@ -1,0 +1,6 @@
+framework module FIFIlter {
+  umbrella header "FIFIlter-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "FIFIlter",
+  "version": "0.1.0",
+  "summary": "A subclass of UIImage",
+  "description": "A subclass of UIImage to allow for easier filtering, chaining, and transitions, all in one line of code",
+  "homepage": "https://github.com/harrytwright/FIFIlter",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "harrytwright": "haroldtomwright@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/harrytwright/FIFIlter.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "FIFIlter/Classes/**/*",
+  "frameworks": [
+    "UIKit",
+    "CoreImage"
+  ]
+}
