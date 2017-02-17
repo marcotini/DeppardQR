@@ -8,21 +8,38 @@
 
 import UIKit
 
-class TestCell: FIRCell {
+class PostCell: FIRCell {
     
     let nameLabel = UILabel()
+    private var _post: Posts! = nil
     
     override var datasourceItem: Any? {
         didSet {
-            nameLabel.text = datasourceItem as? String
+            if let item = datasourceItem as? Posts {
+                _post = item
+                
+                UIUpdate()
+            } else {
+                print(datasourceItem.debugDescription)
+            }
         }
     }
     
     override func setupViews() {
         super.setupViews()
         
-        nameLabel.textColor = .white
+        separatorLine.isHidden = false
+        
+        nameLabel.textColor = .darkGray
+        backgroundColor = .white
+        
         self.addSubview(nameLabel)
         nameLabel.anchor(topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 0)
+    }
+    
+    override func UIUpdate() {
+        super.UIUpdate()
+        
+        nameLabel.text = _post?.companyName
     }
 }

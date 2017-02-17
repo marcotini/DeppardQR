@@ -21,17 +21,20 @@
 		C8445B481E51FD51003FD4A4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B471E51FD51003FD4A4 /* Util.swift */; };
 		C8445B501E520A4B003FD4A4 /* UserCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */; };
 		C85708C81E523DF60004B574 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C85708C71E523DF60004B574 /* tessdata */; };
+		C865FEC41E573F24001EE6DA /* SplashVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865FEC31E573F24001EE6DA /* SplashVc.swift */; };
 		C86A2A741E55DDD900772855 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C86A2A731E55DDD900772855 /* GoogleService-Info.plist */; };
 		C86A2A761E55EBCA00772855 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A2A751E55EBCA00772855 /* Posts.swift */; };
 		C86A2A781E5601B000772855 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A2A771E5601B000772855 /* Downloader.swift */; };
 		C87046B91E55A6570012CA6C /* FIRCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87046B81E55A6570012CA6C /* FIRCollectionViewController.swift */; };
 		C885EC6E1E53486000084C87 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C85708C51E5236250004B574 /* libz.tbd */; };
-		C8C5223F1E55C21A0007F49C /* TesterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5223E1E55C21A0007F49C /* TesterVC.swift */; };
-		C8C522411E55C3040007F49C /* Test Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C522401E55C3040007F49C /* Test Cell.swift */; };
+		C8C5223F1E55C21A0007F49C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5223E1E55C21A0007F49C /* HomeViewController.swift */; };
+		C8C522411E55C3040007F49C /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C522401E55C3040007F49C /* PostCell.swift */; };
 		C8C522431E55C4C30007F49C /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C522421E55C4C30007F49C /* Anchor.swift */; };
 		C8C522451E55C9B30007F49C /* DefaultCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C522441E55C9B30007F49C /* DefaultCells.swift */; };
 		C8C522471E55CAEA0007F49C /* FIRCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C522461E55CAEA0007F49C /* FIRCell.swift */; };
 		C8C5224B1E55CB3A0007F49C /* FIRDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5224A1E55CB3A0007F49C /* FIRDatasource.swift */; };
+		C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C711D81E571A9E001A130F /* QRDatasource.swift */; };
+		C8C711DB1E571BBE001A130F /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C711DA1E571BBE001A130F /* HomeDatasource.swift */; };
 		C8CD17041E55C0090033EF45 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD17031E55C0090033EF45 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,7 @@
 		C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreationVC.swift; sourceTree = "<group>"; };
 		C85708C51E5236250004B574 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C85708C71E523DF60004B574 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../Downloads/tessdata; sourceTree = "<group>"; };
+		C865FEC31E573F24001EE6DA /* SplashVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashVc.swift; sourceTree = "<group>"; };
 		C86A2A731E55DDD900772855 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C86A2A751E55EBCA00772855 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		C86A2A771E5601B000772855 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -62,12 +66,14 @@
 		C885EC681E5345BB00084C87 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../Library/Developer/Xcode/DerivedData/QRMarks-fuxdebzawzckgzcojvphiejizajz/Build/Products/Debug-iphoneos/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
 		C885EC6A1E5345DC00084C87 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C885EC6C1E53477500084C87 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		C8C5223E1E55C21A0007F49C /* TesterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesterVC.swift; sourceTree = "<group>"; };
-		C8C522401E55C3040007F49C /* Test Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Test Cell.swift"; sourceTree = "<group>"; };
+		C8C5223E1E55C21A0007F49C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C8C522401E55C3040007F49C /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		C8C522421E55C4C30007F49C /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		C8C522441E55C9B30007F49C /* DefaultCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCells.swift; sourceTree = "<group>"; };
 		C8C522461E55CAEA0007F49C /* FIRCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRCell.swift; sourceTree = "<group>"; };
 		C8C5224A1E55CB3A0007F49C /* FIRDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDatasource.swift; sourceTree = "<group>"; };
+		C8C711D81E571A9E001A130F /* QRDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDatasource.swift; sourceTree = "<group>"; };
+		C8C711DA1E571BBE001A130F /* HomeDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		C8CD17031E55C0090033EF45 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +124,7 @@
 				C86A2A771E5601B000772855 /* Downloader.swift */,
 				C8445B4B1E51FD91003FD4A4 /* Model */,
 				C8445B4C1E51FD9B003FD4A4 /* View */,
+				C8C711DD1E571BF6001A130F /* Delegate */,
 				C8445B4D1E51FDAC003FD4A4 /* Datasource */,
 				C8445B491E51FD6F003FD4A4 /* Controller */,
 				C80C0F351E4F2D4700A3321F /* Main.storyboard */,
@@ -133,10 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				C8445B4A1E51FD82003FD4A4 /* Super */,
-				C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */,
-				C8C5223E1E55C21A0007F49C /* TesterVC.swift */,
+				C8C5223E1E55C21A0007F49C /* HomeViewController.swift */,
 				C80C0F331E4F2D4700A3321F /* QRViewPage.swift */,
 				C840C96E1E51D6D6005FE361 /* QRReaderController.swift */,
+				C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */,
+				C865FEC31E573F24001EE6DA /* SplashVc.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -164,9 +172,8 @@
 			children = (
 				C8C522481E55CAF30007F49C /* Super */,
 				C8445B4E1E5207F1003FD4A4 /* Animations */,
-				C8445B451E51FD30003FD4A4 /* QRDelegate.swift */,
 				C8C522441E55C9B30007F49C /* DefaultCells.swift */,
-				C8C522401E55C3040007F49C /* Test Cell.swift */,
+				C8C522401E55C3040007F49C /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -176,6 +183,7 @@
 			children = (
 				C8C522491E55CB290007F49C /* Super */,
 				C840C96C1E51C083005FE361 /* QRViewDatasource.swift */,
+				C8C711DA1E571BBE001A130F /* HomeDatasource.swift */,
 			);
 			name = Datasource;
 			sourceTree = "<group>";
@@ -211,8 +219,17 @@
 			isa = PBXGroup;
 			children = (
 				C8C5224A1E55CB3A0007F49C /* FIRDatasource.swift */,
+				C8C711D81E571A9E001A130F /* QRDatasource.swift */,
 			);
 			name = Super;
+			sourceTree = "<group>";
+		};
+		C8C711DD1E571BF6001A130F /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C8445B451E51FD30003FD4A4 /* QRDelegate.swift */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		F472CBFF9A4B166A11C11772 /* Frameworks */ = {
@@ -361,16 +378,19 @@
 				C840C96D1E51C083005FE361 /* QRViewDatasource.swift in Sources */,
 				C8445B481E51FD51003FD4A4 /* Util.swift in Sources */,
 				C8CD17041E55C0090033EF45 /* DataService.swift in Sources */,
+				C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */,
 				C86A2A761E55EBCA00772855 /* Posts.swift in Sources */,
+				C865FEC41E573F24001EE6DA /* SplashVc.swift in Sources */,
 				C8445B461E51FD30003FD4A4 /* QRDelegate.swift in Sources */,
 				C8C522451E55C9B30007F49C /* DefaultCells.swift in Sources */,
 				C86A2A781E5601B000772855 /* Downloader.swift in Sources */,
 				C87046B91E55A6570012CA6C /* FIRCollectionViewController.swift in Sources */,
 				C8C522471E55CAEA0007F49C /* FIRCell.swift in Sources */,
 				C8C522431E55C4C30007F49C /* Anchor.swift in Sources */,
+				C8C711DB1E571BBE001A130F /* HomeDatasource.swift in Sources */,
 				C840C96F1E51D6D6005FE361 /* QRReaderController.swift in Sources */,
-				C8C522411E55C3040007F49C /* Test Cell.swift in Sources */,
-				C8C5223F1E55C21A0007F49C /* TesterVC.swift in Sources */,
+				C8C522411E55C3040007F49C /* PostCell.swift in Sources */,
+				C8C5223F1E55C21A0007F49C /* HomeViewController.swift in Sources */,
 				C840C96B1E51B167005FE361 /* User.swift in Sources */,
 				C8445B441E51FAE3003FD4A4 /* ReaderViewController.swift in Sources */,
 			);

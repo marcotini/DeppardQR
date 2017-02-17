@@ -25,6 +25,7 @@ class ReaderViewController: UIViewController {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var stillImage: AVCaptureStillImageOutput?
     var readerFrameView: UIView?
+    var error: Error?
     
     var frameWidth: CGFloat {
         return 200
@@ -45,7 +46,12 @@ class ReaderViewController: UIViewController {
         
         // Sets the camera input up, if error makes it through setup, returns out of the VDL else creates the views
         self.setUpCameraInput { (error, input) in
-            if error != nil { NSLog("\(error?.localizedDescription)"); return }
+            if error != nil {
+                self.error = error
+                return
+            }
+            
+            self.error = error
             self.viewCreation(with: input)
         }
     }

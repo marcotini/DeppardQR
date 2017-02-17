@@ -14,10 +14,6 @@ import Firebase
     @objc optional func prepareUI()
 }
 
-protocol QRDatasource: Datasource {
-    func downloadData(_ data: Dictionary<String, AnyObject>)
-}
-
 class FIRDatasource: Datasource {
     
     /// A NSCache to hold `objects` so less download needed
@@ -32,14 +28,13 @@ class FIRDatasource: Datasource {
     /// Var to hold the downloaded for the datacource
     public var downloader: Downloader?
     
-    @available(*, unavailable, message: "Please use `init(_:)` instead")
     /// Init that will raise exception if used
     init() {
-        raiseInit("init(_:)")
+        raiseInit("(init(_:)")
     }
     
     /// Init that sets the var collectionView whe setup via super.init(view) in its overide
-    init(_ view: UICollectionView) {
+    @objc init(_ view: UICollectionView) {
         self.collectionView = view
     }
     
@@ -47,7 +42,7 @@ class FIRDatasource: Datasource {
     @available(*, unavailable, message: "Please use `download()` instead")
     func downloadData(_ completion: @escaping (Void) -> Void) { }
     
-    @available(*, unavailable, message: "Please use `download()` and prepare UI changes in the completion handler")
+    @available(*, unavailable, message: "Please use `download()` and prepare UI changes in the completion handler of Downloader function")
     func prepareUI() { }
     
     /// Function to be overwitten to let the user download data and set it

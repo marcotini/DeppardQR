@@ -16,20 +16,24 @@ class QRViewPage: UIViewController, QRDelegate {
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var userName: UILabel!
     
-    let datasource = qrViewDatasource()
+    // Why datasource you may ask, QR's may be created elsewhere in the program so geting ready...
+    var datasource: QRDatasource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        datasource.controller = self
-        datasource.imageView = qrView
-        datasource.downloadData(dict as Dictionary<String, AnyObject>)
+        datasource = qrViewDatasource()
+        datasource?.controller = self
+        datasource?.imageView = qrView
+        datasource?.prepareUI()
     }
     
     func reloadUI() {
-        qrView.image = datasource.image
+        qrView.image = datasource?.image
         userName.text = User.main.name
         companyName.text = User.main.companyName
+        
+        self.navigationItem.title = User.main.name
     }
 }

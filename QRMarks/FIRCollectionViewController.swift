@@ -47,20 +47,23 @@ class FIRCollectionViewController: UICollectionViewController, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = .lightGray
+        collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
         
         collectionView?.register(defaultCell.self)
     }
     
-    func getRefreshControl() -> UIRefreshControl {
+    func refreshControl() -> UIRefreshControl {
         let rc = UIRefreshControl()
+        rc.tintColor = .lightGray
         rc.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         return rc
     }
     
     func handleRefresh() {
-       //datasource?.prepareUI()
+        datasource?.download()
+        
+        collectionView?.refreshControl?.endRefreshing()
     }
 
 }

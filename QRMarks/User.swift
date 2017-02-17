@@ -10,11 +10,12 @@ import Foundation
 
 class User {
     internal var _uid: String!
-    private var _name: String!
-    private var _companyName: String!
-    private var _address: [String : String]!
-    private var _qrUrl: String!
-    private var _numbers: [String]! = []
+    internal var _name: String!
+    internal var _companyName: String!
+    internal var _address: [String : String]!
+    internal var _qrUrl: String!
+    internal var _numbers: [String]! = []
+    private var _objects: Dictionary<String, AnyObject> = [:]
     
     static let main = User()
     static let viewed = User()
@@ -43,6 +44,10 @@ class User {
         return _numbers
     }
     
+    var objects: Dictionary<String, AnyObject> {
+        return _objects
+    }
+    
     func setup(user userKey: String, with userData: Dictionary<String, AnyObject>) {
         NSLog("FUCK: Starting user setup")
         
@@ -51,8 +56,9 @@ class User {
         if let name = userData["name"] as? String { _name = name }
         if let companyName = userData["company_name"] as? String { _companyName = companyName }
         if let qrUrl = userData["qr_url"] as? String { _qrUrl = qrUrl }
+        if let objects = userData["scanned"] as? Dictionary<String, AnyObject> { _objects = objects }
         
-        print(_name, _uid, _companyName, _qrUrl)
+        print(_name, _uid, _companyName, _qrUrl, _objects)
         NSLog("FUCK: Finished")
     }
     

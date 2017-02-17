@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import Firebase
 import FIFIlter
 
 class qrViewDatasource: QRDatasource {
     
-    var controller: QRDelegate?
-    var imageView: UIImageView!
-    var image: UIImage!
-    
-    // Function to download user data that is shown on QR, end code this will be moved
-    func downloadData(_ data: Dictionary<String, AnyObject>) {
-        User.main.setup(user: uid, with: data)
-        prepareUI()
+    @available(*, unavailable, message: "Not Currently Used")
+    override func downloadData(withFIRReference ref: FIRDatabaseReference) {
+        downloader = Downloader(withFIRReference: ref)
+        
+        downloader?.downloadUserData({ (string, dict) in
+            User.main.setup(user: string, with: dict)
+            self.downloader?.items = User.main.objects
+            self.prepareUI()
+        })
     }
     
-    // Function to prepare/create views before reloading the main vc UI, i.e filtering images or animating views
-    func prepareUI() {
+    override func prepareUI() {
         image = createQR()
         controller?.reloadUI()
     }
