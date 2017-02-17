@@ -36,7 +36,7 @@ private extension qrViewDatasource {
         let message = User.main.qrUrl
         let value: [Parameter] = [(.inputCorrectionLevel, "H")]
         
-        let qr = FIImage(message: message.data, imageView: imageView, parameters: value, effect: .CIQRCodeGenerator)
+        let qr = FIImage(message: (message?.data)!, imageView: imageView, parameters: value, effect: .CIQRCodeGenerator)
         
         return qr
     }

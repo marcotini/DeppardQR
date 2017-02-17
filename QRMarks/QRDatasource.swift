@@ -17,5 +17,13 @@ class QRDatasource: Datasource {
     
     func downloadData(withFIRReference ref: FIRDatabaseReference) { }
     
+    func upload(data: Any, to ref: FIRDatabaseReference) {
+        downloader = Downloader(withFIRReference: ref)
+        
+        downloader?.addNewObject((data as? String)!) {
+            print(data)
+        }
+    }
+    
     func prepareUI() { }
 }

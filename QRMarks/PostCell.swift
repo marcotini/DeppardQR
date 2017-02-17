@@ -40,6 +40,8 @@ class PostCell: FIRCell {
     override func UIUpdate() {
         super.UIUpdate()
         
-        nameLabel.text = _post?.companyName
+        let name = _post?.companyName ?? "null"
+        nameLabel.text = name
+        
     }
 }

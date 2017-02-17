@@ -36,4 +36,9 @@ class QRViewPage: UIViewController, QRDelegate {
         
         self.navigationItem.title = User.main.name
     }
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        datasource?.upload(data: uid, to: DataService.sharedInstance.REF_USERS)
+    }
+    
 }

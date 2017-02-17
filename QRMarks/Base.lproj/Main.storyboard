@@ -161,11 +161,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UN5-Gr-6gd">
+                                <rect key="frame" x="16" y="578" width="343" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tPy-rZ-LYk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="UN5-Gr-6gd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0Qh-xT-aQY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UN5-Gr-6gd" secondAttribute="trailing" id="0oB-4n-4sZ"/>
                             <constraint firstItem="9KD-b5-WgH" firstAttribute="top" secondItem="PiL-6A-3iI" secondAttribute="bottom" constant="20" id="CfT-qx-mXd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FYH-kt-DRF" secondAttribute="trailing" id="Gfj-XL-5vf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UN5-Gr-6gd" secondAttribute="bottom" constant="10" id="NJ8-9f-mAe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9KD-b5-WgH" secondAttribute="trailing" id="Va2-Lg-7kZ"/>
                             <constraint firstItem="FYH-kt-DRF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aeB-HB-P40"/>
                             <constraint firstItem="PiL-6A-3iI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eDQ-Lg-pZO"/>

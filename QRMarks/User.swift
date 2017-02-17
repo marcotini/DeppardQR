@@ -9,38 +9,38 @@
 import Foundation
 
 class User {
-    internal var _uid: String!
-    internal var _name: String!
-    internal var _companyName: String!
-    internal var _address: [String : String]!
-    internal var _qrUrl: String!
-    internal var _numbers: [String]! = []
+    internal var _uid: String?
+    internal var _name: String?
+    internal var _companyName: String?
+    internal var _address: [String : String]?
+    internal var _qrUrl: String?
+    internal var _numbers: [String] = []
     private var _objects: Dictionary<String, AnyObject> = [:]
     
     static let main = User()
     static let viewed = User()
     
-    var uid: String {
+    var uid: String? {
         return _uid
     }
     
-    var name: String {
+    var name: String? {
         return _name
     }
     
-    var companyName: String {
+    var companyName: String? {
         return _companyName
     }
     
-    var address: [String : String] {
+    var address: [String : String]? {
         return _address
     }
     
-    var qrUrl: String {
+    var qrUrl: String? {
         return _qrUrl
     }
     
-    var numbers: [String] {
+    var numbers: [String]? {
         return _numbers
     }
     
@@ -68,6 +68,10 @@ class User {
     
     func update(_ number: Any) {
         self._numbers.append(number as! String)
+    }
+    
+    func update(_ uid: String) {
+        self._objects.updateValue("true" as AnyObject, forKey: uid)
     }
     
 }

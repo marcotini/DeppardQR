@@ -75,8 +75,17 @@ class Downloader {
         })
     }
     
-    func addNewObject(_ uid: String, _ completion: @autoclosure (Void) -> Void) {
-        _firebaseRef?.child("/scanned").setValue([uid:"true"])
+    func addNewObject(_ uid: String, _ completion: @escaping (Void) -> Void) {
+        _firebaseRef?.child(self.uid!).child("scanned").updateChildValues([uid:"true"])
+        
+        // Testing...
+        _firebaseRef?.updateChildValues([uid:"true"])
+        _firebaseRef?.child(uid).updateChildValues(["name":"nil"])
+        
+        // Need to update the objects variable inside of User becasue even if the database has the new uid it won't set it inside the objects array unless User.main.objects contains the uid
+        User.main.update(uid)
+        print(User.main.objects)
+        
         completion()
     }
 }
