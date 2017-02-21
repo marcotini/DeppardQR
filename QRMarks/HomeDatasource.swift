@@ -20,7 +20,11 @@ class HomeDatasource: FIRDatasource {
     }
     
     override func download() {
+        self.posts.removeAll()
+        
         downloader?.downloadPostData(completion: { (arr) in
+            self.posts.removeAll()
+            
             self.posts = arr as! [Posts]
             
             self.reloadUI()

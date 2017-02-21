@@ -12,6 +12,10 @@ class FIRCollectionViewController: UICollectionViewController, UICollectionViewD
     
     // MARK: Properties
     
+    var selectedIndex: Int?
+    var cell: FIRCell?
+    internal var _object = [Any]()
+    
     /// Activity Indicator View that can be set anywhere to show information been downloaded
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -33,12 +37,10 @@ class FIRCollectionViewController: UICollectionViewController, UICollectionViewD
         }
     }
     
-    /// Var to hold UICollectionViewFlowLayout
-    /// 
-    /// May be used, may not be used, undecided...
-    var layout: UICollectionViewFlowLayout? {
+    /// Setter for the collectionViewLayout
+    var layout: UICollectionViewLayout? {
         get {
-            return collectionViewLayout as? UICollectionViewFlowLayout
+            return collectionViewLayout as UICollectionViewLayout
         }
     }
     
@@ -81,35 +83,33 @@ extension FIRCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: FIRCell
         
         if let cls = datasource?.cellClass(indexPath) {
             // Not used
             
-            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as! FIRCell
+            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as? FIRCell
         } else if let cls = datasource?.cellClasses().first {
             // Sets the cell if only cell inside cellClasses()
             
-            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as! FIRCell
+            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as? FIRCell
         } else if let cellClasses = datasource?.cellClasses(), cellClasses.count > indexPath.section {
             // Sets the cell using the indexPath to return the cell class if mutiple cells used
             
             let cls = cellClasses[indexPath.section]
-            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as! FIRCell
+            cell = collectionView.dequeue(reuseCell: cls, for: indexPath) as? FIRCell
         } else {
             // If no cells use defaults
             
-            cell = collectionView.dequeue(reuseCell: defaultCell.self, for: indexPath) as! FIRCell
+            cell = collectionView.dequeue(reuseCell: defaultCell.self, for: indexPath) as? FIRCell
         }
     
         // Sets the the data for the cell
-        cell.controller = self
-        cell.datasourceItem = datasource?.item(at: indexPath)
+        cell?.controller = self
+        cell?.datasourceItem = datasource?.item(at: indexPath)
         
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        // Needed to work on cell size
+        self._object.append((cell?.datasourceItem!)!)
+        
+        return cell!
     }
 }

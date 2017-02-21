@@ -17,12 +17,12 @@ class SplashVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloader = Downloader(withFIRReference: DataService.sharedInstance.REF_USERS)
+        downloader = Downloader(nil, withFIRReference: DataService.sharedInstance.REF_USERS)
         
         downloader?.downloadUserData { (uid, dict) in
             User.main.setup(user: uid, with: dict)
             
-            self.downloader?.items = User.main.objects
+//            self.downloader?.items = User.main.objects
             self.performSegue(withIdentifier: self.identi[0], sender: nil)
         }
     }

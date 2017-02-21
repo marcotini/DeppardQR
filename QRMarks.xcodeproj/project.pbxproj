@@ -36,6 +36,9 @@
 		C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C711D81E571A9E001A130F /* QRDatasource.swift */; };
 		C8C711DB1E571BBE001A130F /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C711DA1E571BBE001A130F /* HomeDatasource.swift */; };
 		C8CD17041E55C0090033EF45 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD17031E55C0090033EF45 /* DataService.swift */; };
+		C8E2815C1E5B2A0300F30D87 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E2815B1E5B2A0300F30D87 /* CardCell.swift */; };
+		C8E281601E5B2F3800F30D87 /* CardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E2815F1E5B2F3800F30D87 /* CardDelegate.swift */; };
+		C8E281621E5B351100F30D87 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E281611E5B351100F30D87 /* Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,9 @@
 		C8C711D81E571A9E001A130F /* QRDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDatasource.swift; sourceTree = "<group>"; };
 		C8C711DA1E571BBE001A130F /* HomeDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		C8CD17031E55C0090033EF45 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C8E2815B1E5B2A0300F30D87 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		C8E2815F1E5B2F3800F30D87 /* CardDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDelegate.swift; sourceTree = "<group>"; };
+		C8E281611E5B351100F30D87 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				C8C522461E55CAEA0007F49C /* FIRCell.swift */,
+				C8E2815B1E5B2A0300F30D87 /* CardCell.swift */,
+				C8E281611E5B351100F30D87 /* Layout.swift */,
 			);
 			name = Super;
 			sourceTree = "<group>";
@@ -228,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				C8445B451E51FD30003FD4A4 /* QRDelegate.swift */,
+				C8E2815F1E5B2F3800F30D87 /* CardDelegate.swift */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -373,8 +382,11 @@
 			files = (
 				C80C0F341E4F2D4700A3321F /* QRViewPage.swift in Sources */,
 				C80C0F321E4F2D4700A3321F /* AppDelegate.swift in Sources */,
+				C8E281621E5B351100F30D87 /* Layout.swift in Sources */,
+				C8E2815C1E5B2A0300F30D87 /* CardCell.swift in Sources */,
 				C8445B501E520A4B003FD4A4 /* UserCreationVC.swift in Sources */,
 				C8C5224B1E55CB3A0007F49C /* FIRDatasource.swift in Sources */,
+				C8E281601E5B2F3800F30D87 /* CardDelegate.swift in Sources */,
 				C840C96D1E51C083005FE361 /* QRViewDatasource.swift in Sources */,
 				C8445B481E51FD51003FD4A4 /* Util.swift in Sources */,
 				C8CD17041E55C0090033EF45 /* DataService.swift in Sources */,

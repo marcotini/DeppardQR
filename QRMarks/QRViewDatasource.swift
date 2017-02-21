@@ -18,7 +18,7 @@ class qrViewDatasource: QRDatasource {
         
         downloader?.downloadUserData({ (string, dict) in
             User.main.setup(user: string, with: dict)
-            self.downloader?.items = User.main.objects
+//            self.downloader?.items = User.main.objects
             self.prepareUI()
         })
     }

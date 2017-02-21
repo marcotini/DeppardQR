@@ -20,6 +20,8 @@ class FIRCell: UICollectionViewCell {
     /// Any UI Changes should call `UIUpdate()` inside `didSet`
     var datasourceItem: Any?
     
+    var isExtended: Bool?
+    
     /// The View Controller been used, incase needed to reload data or control the view
     weak var controller: FIRCollectionViewController?
     
@@ -34,7 +36,6 @@ class FIRCell: UICollectionViewCell {
     /// Init that sets the frame and calls the `setupViews()` method
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Hello")
         
         setupViews()
     }
