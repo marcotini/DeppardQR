@@ -9,58 +9,65 @@
 import UIKit
 import Firebase
 
-protocol FIRDownloadManager {
-    var objects: [Posts] {get set}
-    
-    init?()
-    
-    init(withFIRReference ref: FIRDatabaseReference)
-    
-    init(_ uid: String?, withFIRReference ref: FIRDatabaseReference)
-}
-
-typealias Downloading = (_ post: Array<Any>) -> Void
-typealias DownloadingUser = (_ uid: String, _ post: Dictionary<String, AnyObject>) -> Void
+//protocol DownloadManagerDatasource: class {
+//    func downloadManager(didDownload userData: Dictionary<String, AnyObject>, for uid: String)
+//}
+//
+//typealias Downloading = (_ post: Array<Any>) -> Void
+//typealias DownloadingUser = (_ uid: String, _ post: Dictionary<String, AnyObject>) -> Void
 
 /**
  Firebase database download/upload manager
  */
-class Downloader: FIRDownloadManager {
+class DownloadManager: Downloadable, Uploadable {
     
-    /// Firebase Database reference that will be the base for all method calls
     private(set) var _firebaseRef: FIRDatabaseReference?
     
-    /// UID for the user we are downloading
-    ///
-    /// Default may be removed
-    private(set) var _uid: String? = "2EA66C20-4F71-45F7-8742-5816B9FD60F3"
+    private(set) var _uid: String?
     
-    /// Array of Any, this allows all downloaded objects to be held before being sent back out.
-    var objects: [Posts] = []
+    var objects: [Any] = []
+    
+    var datasource: Datasource?
+    
+    var delegate: DownloadManagerDelegate?
+    
+    var queryByChild: String?
     
     required init?() {
         raiseInit("init(withFIRReference:)")
         return nil
     }
     
-    /// Init call for most circumstances, sets the firebaseRef with the input ref
-    required init(withFIRReference ref: FIRDatabaseReference) {
+    init(withFIRReference ref: FIRDatabaseReference) {
         self._firebaseRef = ref
     }
     
-    /// Init call when downloading user data and needs to know the uid
-    required init(_ uid: String?, withFIRReference ref: FIRDatabaseReference) {
+    init(_ uid: String?, withFIRReference ref: FIRDatabaseReference) {
         self._uid = uid ?? "2EA66C20-4F71-45F7-8742-5816B9FD60F3"
         self._firebaseRef = ref
     }
     
-    /// Firebase database download method to return downloaded data
-    ///
-    /// - Parameter completion: The completion Handler contains an array of Any
-    func downloadPostData(completion: @escaping Downloading) {
+    func downloadFirebaseObjects() {
+        self.downloadFirebaseObjects { (posts) in
+            self.delegate?.downloadManager(didDownload: posts)
+        }
+    }
+    
+    func downloadFirebaseUserObjects(with uid: String? = nil) {
+        if self._uid == nil && uid != nil {
+            self._uid = uid
+        }
+        
+        downloadFirebaseUserObjects { (uid, userData) in
+            self.delegate?.downloadManager(didDownload: userData, for: uid)
+        }
+    }
+    
+    func downloadFirebaseObjects(completion: @escaping Downloading) {
+        guard queryByChild != nil else { fatalError("No child to query with") }
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        _firebaseRef?.queryOrdered(byChild: "company_name").observeSingleEvent(of: .value, with: { (snapshot) in
+        _firebaseRef?.queryOrdered(byChild: queryByChild!).observeSingleEvent(of: .value, with: { (snapshot) in
             self.objects.removeAll()
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -81,11 +88,7 @@ class Downloader: FIRDownloadManager {
         })
     }
     
-    /// Function to download required user data.
-    /// Internal call may be changed
-    ///
-    /// - Parameter completion: <#completion description#>
-    func downloadUserData( _ completion: @escaping DownloadingUser) {
+    func downloadFirebaseUserObjects(completion: @escaping DownloadingUser) {
         guard let uid = _uid else { return }
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -98,6 +101,7 @@ class Downloader: FIRDownloadManager {
                         
                         if key == uid {
                             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                            
                             completion(uid, userDict)
                             return
                         }
@@ -107,15 +111,15 @@ class Downloader: FIRDownloadManager {
         })
     }
     
-    func addNewObject(_ uid: String, _ completion: @escaping (Void) -> Void) {
-        _firebaseRef?.child(self._uid!).child("scanned").updateChildValues([uid:"true"])
+    func addNewObjects(with uid: String?, _ completion: @escaping (Void) -> Void) {
+        _firebaseRef?.child(self._uid!).child("scanned").updateChildValues([uid!:"true"])
         
         // Testing...
-        _firebaseRef?.updateChildValues([uid:"true"])
-        _firebaseRef?.child(uid).updateChildValues(["name":"nil"])
+        _firebaseRef?.updateChildValues([uid!:"true"])
+        _firebaseRef?.child(uid!).updateChildValues(["name":"nil"])
         
         // Need to update the objects variable inside of User because even if the database has the new uid it won't set it inside the objects array unless User.main.objects contains the uid
-        User.main.update(uid)
+        User.main.update(uid!)
         print(User.main.objects)
         
         completion()

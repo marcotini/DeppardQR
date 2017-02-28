@@ -37,8 +37,8 @@ class UserCreationVC: ReaderViewController {
         imageView.isHidden = true
         
         dectectData(from: imageView.image) {
-            print(User.main.address)
-            print(User.main.numbers)
+            print(User.main.address ?? "Nothing to print")
+            print(User.main.numbers ?? "Nothing to print")
             
             NSLog("FINISHED")
         }
@@ -70,6 +70,7 @@ class UserCreationVC: ReaderViewController {
         tesseract?.recognize()
         
         guard let output = tesseract?.recognizedText else { return nil }
+        print(output as Any)
         return output
     }
     

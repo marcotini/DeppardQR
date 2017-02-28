@@ -8,22 +8,23 @@
 
 import UIKit
 
-class SplashVC: UIViewController {
+class SplashVC: UIViewController, DownloadManagerDelegate {
     
     let identi: [String] = ["toHome"]
     
-    var downloader: Downloader?
+    var downloader: DownloadManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloader = Downloader(nil, withFIRReference: DataService.sharedInstance.REF_USERS)
+        downloader = DownloadManager(nil, withFIRReference: DataService.Singleton.REF_USERS)
+        downloader?.delegate = self
+        downloader?.downloadFirebaseUserObjects()
+    }
+    
+    func downloadManager(didDownload userData: Dictionary<String, AnyObject>, for uid: String) {
+        User.main.setup(user: uid, with: userData)
         
-        downloader?.downloadUserData { (uid, dict) in
-            User.main.setup(user: uid, with: dict)
-            
-//            self.downloader?.items = User.main.objects
-            self.performSegue(withIdentifier: self.identi[0], sender: nil)
-        }
+        self.performSegue(withIdentifier: self.identi[0], sender: nil)
     }
 }

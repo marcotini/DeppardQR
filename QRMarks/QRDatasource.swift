@@ -9,21 +9,26 @@
 import UIKit
 import Firebase
 
-class QRDatasource: Datasource {
-    var controller: QRDelegate?
-    var imageView: UIImageView!
-    var image: UIImage!
-    var downloader: Downloader?
+class QRDatasource {
     
+    /// Controller to set up the Delegate
+    weak var controller: QRDelegate?
+    
+    /// UIImageView to be used by the QR Filter
+    var imageView: UIImageView!
+    
+    /// Image to hold the QR Code
+    var image: UIImage!
+    
+    /// Download Manager, Only Used for testing
+    var downloader: DownloadManager?
+    
+    /// For Testing
     func downloadData(withFIRReference ref: FIRDatabaseReference) { }
     
-    func upload(data: Any, to ref: FIRDatabaseReference) {
-        downloader = Downloader(withFIRReference: ref)
-        
-        downloader?.addNewObject((data as? String)!) {
-            print(data)
-        }
-    }
+    /// For Testing
+    func upload(data: Any, to ref: FIRDatabaseReference) { }
     
+    ///
     func prepareUI() { }
 }

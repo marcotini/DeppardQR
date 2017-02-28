@@ -127,8 +127,11 @@ private extension ReaderViewController {
 
     /// Function to call the setup functions, manager like function
     func viewCreation(with input: AnyObject?) {
+        
         setupCaptureSession(input!)
+        
         setupPreviewLayer()
+        
         setupFrame(frameWidth: self.frameWidth, height: self.frameHeight)
     }
     
@@ -252,6 +255,7 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
     
     // What to do with data once caught
     func caughtCode(_ data: String) {
+        Analytics.logQR(by: User.main, for: data)
         NSLog(data)
     }
 }

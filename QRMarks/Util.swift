@@ -85,6 +85,7 @@ public extension UICollectionView {
 extension NSObject {
     class var string: String {
         let className = self as AnyObject
+        print(NSStringFromClass(className as! AnyClass))
         return NSStringFromClass(className as! AnyClass)
     }
 }
@@ -133,12 +134,6 @@ extension Dictionary {
         
         return output
 
-    }
-    
-    func sort(_ dict: Dictionary<String, String>) -> [dict] {
-        let arr = dict.sorted(by: { $0.0 < $1.0 })
-        
-        return arr
     }
 }
 
