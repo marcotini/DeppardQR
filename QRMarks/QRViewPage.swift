@@ -21,24 +21,29 @@ class QRViewPage: UIViewController, QRDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        datasource = qrViewDatasource()
+        // Initialises the datasource
+        // Also Sets the datasource ImageView, this is needed for the QR creation
+        datasource = qrViewDatasource(withImageView: qrView)
+        
+        // Connects the delegate for the datasource
         datasource?.controller = self
-        datasource?.imageView = qrView
+        
+        // Tell the datasource to prepare the UI before it calls the reload UI
         datasource?.prepareUI()
     }
     
-    func reloadUI() {
-        qrView.image = datasource?.image
+    func reloadUI(with image: UIImage) {
+        qrView.image = image
         userName.text = User.main.name
         companyName.text = User.main.companyName
         
         self.navigationItem.title = User.main.name
     }
     
+    // TEST BUTTON
     @IBAction func buttonPressed(_ sender: Any) {
-        datasource?.upload(data: uid, to: DataService.sharedInstance.REF_USERS)
+        datasource?.upload(data: uid, to: DataService.Singleton.REF_USERS)
     }
     
 }

@@ -15,7 +15,7 @@ class DataService {
     
     // MARK: - Singleton Init
     
-    static let sharedInstance = DataService()
+    static let Singleton = DataService()
     
     // MARK: - DB Refernces
     

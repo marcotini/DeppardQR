@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol QRDelegate {
-    func reloadUI()
+@objc protocol QRDelegate: class {
+    func reloadUI(with image: UIImage)
 }

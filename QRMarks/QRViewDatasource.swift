@@ -12,32 +12,36 @@ import FIFIlter
 
 class qrViewDatasource: QRDatasource {
     
-    @available(*, unavailable, message: "Not Currently Used")
-    override func downloadData(withFIRReference ref: FIRDatabaseReference) {
-        downloader = Downloader(withFIRReference: ref)
+    init(withImageView imageView: UIImageView ) {
+        super.init()
         
-        downloader?.downloadUserData({ (string, dict) in
-            User.main.setup(user: string, with: dict)
-            self.downloader?.items = User.main.objects
-            self.prepareUI()
-        })
+        self.imageView = imageView
     }
     
     override func prepareUI() {
-        image = createQR()
-        controller?.reloadUI()
+        guard let image = createQR() else { fatalError("No QR CODE") }
+        
+        controller?.reloadUI(with: image)
     }
-}
-
-private extension qrViewDatasource {
+    
+    override func upload(data: Any, to ref: FIRDatabaseReference) {
+        downloader = DownloadManager(withFIRReference: ref)
+        
+//        downloader?.addNewObjects((data as? String)!) {
+//            print(data)
+//        }
+    }
     
     // Private function to create QR code for main user
-    func createQR() -> UIImage? {
+    private func createQR() -> UIImage? {
         let message = User.main.qrUrl
         let value: [Parameter] = [(.inputCorrectionLevel, "H")]
         
-        let qr = FIImage(message: (message?.data)!, imageView: imageView, parameters: value, effect: .CIQRCodeGenerator)
-        
-        return qr
+        return FIImage(
+            message: (message?.data)!,
+            imageView: imageView,
+            parameters: value,
+            effect: .CIQRCodeGenerator
+        )
     }
 }

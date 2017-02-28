@@ -94,28 +94,53 @@
             </objects>
             <point key="canvasLocation" x="1137" y="499"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Title-->
         <scene sceneID="PGw-ew-ZKd">
             <objects>
                 <collectionViewController id="3YL-EO-Hpg" customClass="HomeViewController" customModule="QRMarks" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rlT-Tq-rMW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kgb-h5-R9C">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bsI-2a-fjF">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rDn-zq-RoM">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="rDn-zq-RoM" customClass="CollectionViewCell" customModule="QRMarks" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-5N-DOX" userLabel="Content View">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNd-7A-cLR" userLabel="Internal View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.35686274509999999" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.97647058819999999" green="0.35686274509999999" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="hNd-7A-cLR" secondAttribute="bottom" id="2Ha-Wz-53U"/>
+                                                <constraint firstItem="hNd-7A-cLR" firstAttribute="leading" secondItem="qLJ-5N-DOX" secondAttribute="leading" id="NZi-RE-2Xv"/>
+                                                <constraint firstAttribute="trailing" secondItem="hNd-7A-cLR" secondAttribute="trailing" id="Q8c-td-VdM"/>
+                                                <constraint firstItem="hNd-7A-cLR" firstAttribute="top" secondItem="qLJ-5N-DOX" secondAttribute="top" id="jsZ-A3-2uO"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="qLJ-5N-DOX" firstAttribute="leading" secondItem="rDn-zq-RoM" secondAttribute="leading" id="ZFA-GJ-XFa"/>
+                                    <constraint firstAttribute="trailing" secondItem="qLJ-5N-DOX" secondAttribute="trailing" id="kMF-B4-Fxj"/>
+                                    <constraint firstItem="qLJ-5N-DOX" firstAttribute="top" secondItem="rDn-zq-RoM" secondAttribute="top" id="qp2-dX-FvH"/>
+                                    <constraint firstAttribute="bottom" secondItem="qLJ-5N-DOX" secondAttribute="bottom" id="sde-yV-MN6"/>
+                                </constraints>
+                                <size key="customSize" width="375" height="150"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -123,7 +148,7 @@
                             <outlet property="delegate" destination="3YL-EO-Hpg" id="xis-wB-TfD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="HVS-Yd-stF"/>
+                    <navigationItem key="navigationItem" title="Title" id="XXc-Uk-VbM"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myB-c9-2Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,7 +276,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="zD6-pC-hZB">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iOi-IG-gwa" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="homeTab" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iOi-IG-gwa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="prk-Fn-hjU">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -274,9 +299,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eXh-WJ-rCA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="G1D-RV-fAg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OBC-LF-IwK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OBC-LF-IwK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.16078431369999999" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -312,6 +341,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SdM-0I-neD"/>
-        <segue reference="tmj-1F-A6g"/>
+        <segue reference="hhN-pa-Ey1"/>
     </inferredMetricsTieBreakers>
 </document>

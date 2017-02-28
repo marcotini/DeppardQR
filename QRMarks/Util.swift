@@ -43,6 +43,28 @@ func raiseInit(_ function: String) {
     NSException(name: .genericException, reason: "init() is not supported, please use \(function) instead", userInfo: nil).raise()
 }
 
+precedencegroup BooleanPrecedence { associativity: left }
+infix operator ⊕ : BooleanPrecedence
+
+/// Exclusive OR
+func ⊕(lhs: Bool, rhs: Bool) -> Bool {
+    return lhs != rhs
+}
+
+func insertionSort<T>(_ array: [T], _ isOrderedBefore: (T, T) -> Bool) -> [T] {
+    var a = array
+    for x in 1..<a.count {
+        var y = x
+        let temp = a[y]
+        while y > 0 && isOrderedBefore(temp, a[y - 1]) {
+            a[y] = a[y - 1]
+            y -= 1
+        }
+        a[y] = temp
+    }
+    return a
+}
+
 public extension UICollectionView {
     /// Allows for neater looking code
     func register(_ cell: AnyClass, for reuse: String) {
@@ -63,6 +85,7 @@ public extension UICollectionView {
 extension NSObject {
     class var string: String {
         let className = self as AnyObject
+        print(NSStringFromClass(className as! AnyClass))
         return NSStringFromClass(className as! AnyClass)
     }
 }
@@ -80,6 +103,37 @@ extension Dictionary {
         }
         
         return false
+    }
+    
+    func toString() -> String? {
+        var stringOuput: String = ""
+        var x = 0
+        
+        for (key, value) in self {
+            guard let strKey = key as? String else { return  nil }
+            if x > 0 {
+                stringOuput += "\n "
+            }
+            
+            stringOuput += "\(strKey.capitalized) : \(value)"
+            
+            x += 1
+        }
+        
+        return stringOuput
+    }
+    
+    func toStringArr() -> [String]? {
+        var output = [String]()
+        
+        for (key, value) in self {
+            guard let strKey = key as? String else { return nil }
+            
+            output.append("\(strKey.capitalized) : \(value)")
+        }
+        
+        return output
+
     }
 }
 

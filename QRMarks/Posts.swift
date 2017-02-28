@@ -19,12 +19,25 @@ class Posts: User {
         super.init()
         
         _uid = key
+        print(dict)
         
         if let name = dict["name"] as? String { _name = name }
-        if let companyName = dict["company_name"] as? String { _companyName = companyName }
-        if let qrUrl = dict["qr_url"] as? String { _qrUrl = qrUrl }
         
-        NSLog("FUCK: Finished")
+        if let companyName = dict["company_name"] as? String {
+            _companyName = companyName
+        } else {
+            _companyName = "null"
+        }
+        
+        if let address = dict["address"] as? Dictionary<String, String> { _address = address }
+        
+        if let number = dict["numbers"] as? Dictionary<String, String> {
+            for (_, value) in number {
+                _numbers.append(value)
+            }
+        }
+        
+        print(address, numbers)
     }
     
 }
