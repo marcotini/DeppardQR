@@ -12,7 +12,7 @@ import TesseractOCR
 
 typealias Detecting = (Void) -> Void
 
-class UserCreationVC: ReaderViewController {
+class UserCreationVC: ReaderViewController, CaptureSessionDelegate {
     
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -45,18 +45,17 @@ class UserCreationVC: ReaderViewController {
     }
     
     @IBAction func pressedButton(_ sender: UIButton) {
-        setImage()
+        takePhoto()
     }
     
-    func setImage() {
-        takePhoto { (image, error) in
-            if error != nil { return }
-            self.dectectData(from: image) {
-                self.captureSession?.stopRunning()
-                self.view.bringSubview(toFront: self.backGroundView)
-                
-                NSLog("FINISHED")
-            }
+    func captureSession(didTakePhoto photo: UIImage, with error: Error?) {
+        if error == nil { /* Error Handle */ }
+        
+        self.dectectData(from: photo) {
+            self.captureSession?.stopRunning()
+            self.view.bringSubview(toFront: self.backGroundView)
+            
+            NSLog("FINISHED")
         }
     }
     

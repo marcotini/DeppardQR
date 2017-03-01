@@ -1,0 +1,7 @@
+1) Check to see if `CollectionView` works like its controller relative, if so move repeated code to protocol
+
+2) Turn `CollectionView` folder to a cocoapod
+
+3) Set up log in, only to be used with email, no facebook conectivity!
+
+4) UI Creation at the weekend

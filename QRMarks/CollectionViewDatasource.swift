@@ -16,7 +16,15 @@ class CollectionViewDatasource: NSObject, Datasource {
     
     var downloadManager: Downloadable?
     
+    var controller: CollectionViewController?
+    
     public var objects: [Any]? {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    var filteredObjects: [Any]? {
         didSet {
             self.collectionView?.reloadData()
         }

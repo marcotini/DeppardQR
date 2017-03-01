@@ -12,6 +12,9 @@ public class CollectionViewController: UICollectionViewController {
     
     var datasource: Datasource?
     
+    /// In the of chance of collection view being used with a search bar
+    var isSearching: Bool = false
+    
     /// Getter and Setter for the backgroundColor of the collection view
     var backgroundColor: UIColor {
         get {
@@ -89,13 +92,15 @@ extension CollectionViewController {
         
         if let cls = datasource?.cellClasses().first {
             let cell = collectionView.deqeueCell(with: cls.reuseId, for: indexPath)
-            cell?.backgroundColor = .red
+            cell?.backgroundColor = colours[indexPath.row]
+            cell?.datasourceItem = datasource?.item(at: indexPath)
             return cell!
         } else if let cellClasses = datasource?.cellClasses(), cellClasses.count > indexPath.section {
             let cls = cellClasses[indexPath.section]
             
             let cell = collectionView.deqeueCell(with: cls.reuseId, for: indexPath)
-            cell?.backgroundColor = .red
+            cell?.backgroundColor = colours[indexPath.row]
+            cell?.datasourceItem = datasource?.item(at: indexPath)
             return cell!
         }
         

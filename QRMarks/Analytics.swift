@@ -17,5 +17,4 @@ class Analytics {
             "Scanned Who" : scannie as NSObject
             ])
     }
-    
 }

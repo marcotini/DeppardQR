@@ -18,8 +18,9 @@ class Posts: User {
     init(_ key: String?, dict: Dictionary<String, AnyObject>) {
         super.init()
         
+        print(#function)
+        
         _uid = key
-        print(dict)
         
         if let name = dict["name"] as? String { _name = name }
         
@@ -36,8 +37,6 @@ class Posts: User {
                 _numbers.append(value)
             }
         }
-        
-        print(address, numbers)
     }
     
 }

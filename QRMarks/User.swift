@@ -49,7 +49,7 @@ class User {
     }
     
     func setup(user userKey: String, with userData: Dictionary<String, AnyObject>) {
-        NSLog("FUCK: Starting user setup")
+        print(#function)
         
         self._uid = userKey
         
@@ -57,9 +57,6 @@ class User {
         if let companyName = userData["company_name"] as? String { _companyName = companyName }
         if let qrUrl = userData["qr_url"] as? String { _qrUrl = qrUrl }
         if let objects = userData["scanned"] as? Dictionary<String, AnyObject> { _objects = objects }
-        
-        print(_name, _uid, _companyName, _qrUrl, _objects)
-        NSLog("FUCK: Finished")
     }
     
     func update(_ address: [String : String]) {

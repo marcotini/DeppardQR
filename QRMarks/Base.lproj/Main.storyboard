@@ -63,7 +63,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xnL-Rm-OCU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BNu-3p-wcg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -98,8 +98,8 @@
         <scene sceneID="PGw-ew-ZKd">
             <objects>
                 <collectionViewController id="3YL-EO-Hpg" customClass="HomeViewController" customModule="QRMarks" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rlT-Tq-rMW">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="rlT-Tq-rMW">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bsI-2a-fjF">
@@ -109,37 +109,13 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="rDn-zq-RoM" customClass="CollectionViewCell" customModule="QRMarks" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="rDn-zq-RoM" customClass="IBCollectionViewCell" customModule="QRMarks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-5N-DOX" userLabel="Content View">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNd-7A-cLR" userLabel="Internal View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.35686274509999999" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.97647058819999999" green="0.35686274509999999" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="hNd-7A-cLR" secondAttribute="bottom" id="2Ha-Wz-53U"/>
-                                                <constraint firstItem="hNd-7A-cLR" firstAttribute="leading" secondItem="qLJ-5N-DOX" secondAttribute="leading" id="NZi-RE-2Xv"/>
-                                                <constraint firstAttribute="trailing" secondItem="hNd-7A-cLR" secondAttribute="trailing" id="Q8c-td-VdM"/>
-                                                <constraint firstItem="hNd-7A-cLR" firstAttribute="top" secondItem="qLJ-5N-DOX" secondAttribute="top" id="jsZ-A3-2uO"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="qLJ-5N-DOX" firstAttribute="leading" secondItem="rDn-zq-RoM" secondAttribute="leading" id="ZFA-GJ-XFa"/>
-                                    <constraint firstAttribute="trailing" secondItem="qLJ-5N-DOX" secondAttribute="trailing" id="kMF-B4-Fxj"/>
-                                    <constraint firstItem="qLJ-5N-DOX" firstAttribute="top" secondItem="rDn-zq-RoM" secondAttribute="top" id="qp2-dX-FvH"/>
-                                    <constraint firstAttribute="bottom" secondItem="qLJ-5N-DOX" secondAttribute="bottom" id="sde-yV-MN6"/>
-                                </constraints>
                                 <size key="customSize" width="375" height="150"/>
                             </collectionViewCell>
                         </cells>
@@ -163,7 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-6A-3iI">
@@ -278,8 +254,9 @@
             <objects>
                 <tabBarController storyboardIdentifier="homeTab" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iOi-IG-gwa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="prk-Fn-hjU">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="prk-Fn-hjU">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

@@ -26,6 +26,7 @@ class ReaderViewController: UIViewController {
     var stillImage: AVCaptureStillImageOutput?
     var readerFrameView: UIView?
     var error: Error?
+    var delegate: CaptureSessionDelegate?
     
     var frameWidth: CGFloat {
         return 200
@@ -223,12 +224,15 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVReadableCode) as! AVReadableCode
             readerFrameView?.frame = barCodeObject.bounds;
             
-            guard metadataObj.stringValue != nil else { return }
-            caughtCode(metadataObj.stringValue)
+            guard (metadataObj.stringValue) != nil else { return }
+            delegate?.captureSession?(
+                didCaptureMetadataObject: metadataObj,
+                withOutput: metadataObj.stringValue
+            )
         }
     }
     
-    func takePhoto(_ completion: @escaping (UIImage?, Error?) -> Void) {
+    func takePhoto() {
         if let videoConnection = stillImage?.connection(withMediaType: AVMediaTypeVideo){
             videoConnection.videoOrientation = AVCaptureVideoOrientation.portrait
             
@@ -237,7 +241,7 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
                 
                 if error != nil {
                     print("\(error)")
-                    completion(nil, error)
+                    self.delegate?.captureSession?(didTakePhoto: UIImage(), with: error)
                 }
                 
                 if sampleBuffer != nil {
@@ -247,16 +251,10 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
                     
                     let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
                     
-                    completion(image, nil)
+                    self.delegate?.captureSession?(didTakePhoto: image, with: nil)
                 }
             })
         }
-    }
-    
-    // What to do with data once caught
-    func caughtCode(_ data: String) {
-        Analytics.logQR(by: User.main, for: data)
-        NSLog(data)
     }
 }
 
