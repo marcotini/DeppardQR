@@ -13,7 +13,6 @@
 		C80C0F371E4F2D4700A3321F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80C0F351E4F2D4700A3321F /* Main.storyboard */; };
 		C80C0F391E4F2D4700A3321F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80C0F381E4F2D4700A3321F /* Assets.xcassets */; };
 		C80C0F3C1E4F2D4700A3321F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80C0F3A1E4F2D4700A3321F /* LaunchScreen.storyboard */; };
-		C8301B2A1E672AA700A54F75 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8301B291E672AA700A54F75 /* CollectionView.swift */; };
 		C8301B2C1E672E5400A54F75 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = C8301B2B1E672E5400A54F75 /* TODO */; };
 		C840C96B1E51B167005FE361 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840C96A1E51B167005FE361 /* User.swift */; };
 		C840C96D1E51C083005FE361 /* QRViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840C96C1E51C083005FE361 /* QRViewDatasource.swift */; };
@@ -22,12 +21,6 @@
 		C8445B461E51FD30003FD4A4 /* QRDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B451E51FD30003FD4A4 /* QRDelegate.swift */; };
 		C8445B481E51FD51003FD4A4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B471E51FD51003FD4A4 /* Util.swift */; };
 		C8445B501E520A4B003FD4A4 /* UserCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */; };
-		C84F034E1E65BF0000B6163C /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F03481E65BF0000B6163C /* Datasource.swift */; };
-		C84F034F1E65BF0000B6163C /* CollectionViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F03491E65BF0000B6163C /* CollectionViewDatasource.swift */; };
-		C84F03501E65BF0000B6163C /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F034A1E65BF0000B6163C /* CollectionViewDelegate.swift */; };
-		C84F03511E65BF0000B6163C /* DownloadManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F034B1E65BF0000B6163C /* DownloadManagerProtocol.swift */; };
-		C84F03521E65BF0000B6163C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F034C1E65BF0000B6163C /* CollectionViewCell.swift */; };
-		C84F03531E65BF0000B6163C /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F034D1E65BF0000B6163C /* CollectionViewController.swift */; };
 		C84F03561E65C57F00B6163C /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F03551E65C57F00B6163C /* HomeDatasource.swift */; };
 		C85708C81E523DF60004B574 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C85708C71E523DF60004B574 /* tessdata */; };
 		C859DEBF1E5EF0E900AD4DF9 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859DEBE1E5EF0E900AD4DF9 /* Analytics.swift */; };
@@ -54,7 +47,6 @@
 		C80C0F381E4F2D4700A3321F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C80C0F3B1E4F2D4700A3321F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C80C0F3D1E4F2D4700A3321F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8301B291E672AA700A54F75 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		C8301B2B1E672E5400A54F75 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		C840C96A1E51B167005FE361 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C840C96C1E51C083005FE361 /* QRViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewDatasource.swift; sourceTree = "<group>"; };
@@ -63,12 +55,6 @@
 		C8445B451E51FD30003FD4A4 /* QRDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDelegate.swift; sourceTree = "<group>"; };
 		C8445B471E51FD51003FD4A4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreationVC.swift; sourceTree = "<group>"; };
-		C84F03481E65BF0000B6163C /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
-		C84F03491E65BF0000B6163C /* CollectionViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDatasource.swift; sourceTree = "<group>"; };
-		C84F034A1E65BF0000B6163C /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
-		C84F034B1E65BF0000B6163C /* DownloadManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManagerProtocol.swift; sourceTree = "<group>"; };
-		C84F034C1E65BF0000B6163C /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		C84F034D1E65BF0000B6163C /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		C84F03551E65C57F00B6163C /* HomeDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		C85708C51E5236250004B574 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C85708C71E523DF60004B574 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../Downloads/tessdata; sourceTree = "<group>"; };
@@ -144,7 +130,6 @@
 				C80C0F3A1E4F2D4700A3321F /* LaunchScreen.storyboard */,
 				C80C0F3D1E4F2D4700A3321F /* Info.plist */,
 				C885EC6F1E5364A100084C87 /* Extra */,
-				C84F03541E65BF0500B6163C /* CollectionView */,
 			);
 			path = QRMarks;
 			sourceTree = "<group>";
@@ -194,20 +179,6 @@
 				C84F03551E65C57F00B6163C /* HomeDatasource.swift */,
 			);
 			name = Datasource;
-			sourceTree = "<group>";
-		};
-		C84F03541E65BF0500B6163C /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				C84F03481E65BF0000B6163C /* Datasource.swift */,
-				C8301B291E672AA700A54F75 /* CollectionView.swift */,
-				C84F03491E65BF0000B6163C /* CollectionViewDatasource.swift */,
-				C84F034A1E65BF0000B6163C /* CollectionViewDelegate.swift */,
-				C84F034B1E65BF0000B6163C /* DownloadManagerProtocol.swift */,
-				C84F034C1E65BF0000B6163C /* CollectionViewCell.swift */,
-				C84F034D1E65BF0000B6163C /* CollectionViewController.swift */,
-			);
-			name = CollectionView;
 			sourceTree = "<group>";
 		};
 		C885EC6F1E5364A100084C87 /* Extra */ = {
@@ -379,10 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C84F034F1E65BF0000B6163C /* CollectionViewDatasource.swift in Sources */,
-				C84F03501E65BF0000B6163C /* CollectionViewDelegate.swift in Sources */,
 				C80C0F341E4F2D4700A3321F /* QRViewPage.swift in Sources */,
-				C84F03531E65BF0000B6163C /* CollectionViewController.swift in Sources */,
 				C80C0F321E4F2D4700A3321F /* AppDelegate.swift in Sources */,
 				C8445B501E520A4B003FD4A4 /* UserCreationVC.swift in Sources */,
 				C840C96D1E51C083005FE361 /* QRViewDatasource.swift in Sources */,
@@ -392,19 +360,15 @@
 				C8CD17041E55C0090033EF45 /* DataService.swift in Sources */,
 				C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */,
 				C86A2A761E55EBCA00772855 /* Posts.swift in Sources */,
-				C84F03511E65BF0000B6163C /* DownloadManagerProtocol.swift in Sources */,
 				C865FEC41E573F24001EE6DA /* SplashVc.swift in Sources */,
 				C8445B461E51FD30003FD4A4 /* QRDelegate.swift in Sources */,
 				C86A2A781E5601B000772855 /* DownloadManager.swift in Sources */,
 				C8C522431E55C4C30007F49C /* Anchor.swift in Sources */,
-				C8301B2A1E672AA700A54F75 /* CollectionView.swift in Sources */,
 				C840C96F1E51D6D6005FE361 /* QRReaderController.swift in Sources */,
-				C84F034E1E65BF0000B6163C /* Datasource.swift in Sources */,
 				C84F03561E65C57F00B6163C /* HomeDatasource.swift in Sources */,
 				C8C5223F1E55C21A0007F49C /* HomeViewController.swift in Sources */,
 				C840C96B1E51B167005FE361 /* User.swift in Sources */,
 				C8445B441E51FAE3003FD4A4 /* ReaderViewController.swift in Sources */,
-				C84F03521E65BF0000B6163C /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-let colours: [UIColor] = [.yellow, .cyan, .blue, .orange, .green, .lightGray]
+import HWCollectionView
 
 class HomeViewController: CollectionViewController, DownloadManagerDelegate {
     
@@ -18,7 +17,7 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
         return .lightContent
     }
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         print(#file)
         print(#function)

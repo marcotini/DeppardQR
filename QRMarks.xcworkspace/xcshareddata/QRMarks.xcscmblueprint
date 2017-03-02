@@ -4,12 +4,14 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BC5CBC93E5CFA07D08F0B9B5364C895AD73D7DAD" : 9223372036854775807,
     "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6" : 9223372036854775807,
     "0D7373761BA592A09E0E2A0B1017289564B23FEC" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7B4C160F-CFDF-4A0A-A537-B34097B7163F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6" : "..\/..\/Frameworks\/FIFilter\/FIFIlter",
+    "BC5CBC93E5CFA07D08F0B9B5364C895AD73D7DAD" : "..\/..\/Frameworks\/CocoaPods\/HWCollectionView",
+    "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6" : "..\/..\/Frameworks\/CocoaPods\/FIFIlter",
     "0D7373761BA592A09E0E2A0B1017289564B23FEC" : "QRMarks\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "QRMarks",
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/harrytwright\/FIFIlter.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/harrytwright\/HWCollectionView",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BC5CBC93E5CFA07D08F0B9B5364C895AD73D7DAD"
     }
   ]
 }

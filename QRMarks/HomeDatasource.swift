@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HWCollectionView
 
 class HomeDatasource: CollectionViewDatasource {
     
@@ -25,7 +26,7 @@ class HomeDatasource: CollectionViewDatasource {
     override func cellClasses() -> [CollectionViewCell.Type] {
         print(#function)
         
-        return [CollectionViewCell.self]
+        return [IBCollectionViewCell.self]
     }
     
     override func numberOfItems(in section: Int) -> Int {

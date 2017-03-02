@@ -1,0 +1,22 @@
+{
+  "name": "HWCollectionView",
+  "version": "0.1.0",
+  "summary": "HWCollectionView is a bunch of collection view sublcasses",
+  "description": "HWCollectionView is a bunch of collection view sublcasses, these allow for collection views to be set up with minimal code",
+  "homepage": "https://github.com/harrytwright/HWCollectionView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "harrytwright": "haroldtomwright@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/harrytwright/HWCollectionView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HWCollectionView/Classes/**/*"
+}
