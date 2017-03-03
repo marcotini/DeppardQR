@@ -43,7 +43,8 @@ class QRViewPage: UIViewController, QRDelegate {
     
     // TEST BUTTON
     @IBAction func buttonPressed(_ sender: Any) {
-        datasource?.upload(data: uid, to: DataService.Singleton.REF_USERS)
+        AuthManager.signOut()
+        dismiss(animated: true, completion: nil)
     }
     
 }

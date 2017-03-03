@@ -1,0 +1,6 @@
+framework module HWCollectionView {
+  umbrella header "HWCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}

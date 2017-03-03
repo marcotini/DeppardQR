@@ -21,6 +21,7 @@ class DataService {
     
     fileprivate var _REF_BASE = DB_BASE
     fileprivate var _REF_USERS = DB_BASE.child("Users")
+    fileprivate var _REF_POSTS = DB_BASE.child("Scanned")
     
     // MARK: - Setters
     
@@ -30,6 +31,10 @@ class DataService {
     
     var REF_USERS: FIRDatabaseReference {
         return _REF_USERS
+    }
+    
+    var REF_POSTS: FIRDatabaseReference {
+        return _REF_POSTS
     }
     
     var REF_USER_CURRENT: FIRDatabaseReference {

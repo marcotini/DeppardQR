@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HWCollectionView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QRMarks.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E643FF858EC7EE63BCCE217F0086326</key>
+		<key>40C00FFF33F94E0D477D6E75759A107A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EF92B203262784CDA8FFF94F9A46714</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9A867CB5BB4DAD09741507CAF1C761F</key>
+		<key>D1F03725A8CFC42FC01B8D019D56AE48</key>
 		<dict>
 			<key>primary</key>
 			<true/>

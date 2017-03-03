@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HWCollectionView
 import Firebase
 
 //protocol DownloadManagerDatasource: class {
