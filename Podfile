@@ -6,10 +6,15 @@ target 'QRMarks' do
   use_frameworks!
 
   pod 'FIFIlter', :path => '/Users/harrywright/Frameworks/CocoaPods/FIFIlter'
-  pod 'TesseractOCRiOS', :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git'
   pod 'HWCollectionView', :path => '/Users/harrywright/Frameworks/CocoaPods/HWCollectionView'
+  # Required
+  pod 'TesseractOCRiOS', :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git'
+  # Server
   pod 'Firebase'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  # Analytics
+  pod 'Fabric'
+  pod 'Crashlytics'
   
 end

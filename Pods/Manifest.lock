@@ -1,4 +1,7 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - FIFIlter (0.1.0)
   - Firebase (3.14.0):
     - Firebase/Core (= 3.14.0)
@@ -39,6 +42,8 @@ PODS:
   - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - FIFIlter (from `/Users/harrywright/Frameworks/CocoaPods/FIFIlter`)
   - Firebase
   - Firebase/Auth
@@ -60,6 +65,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FIFIlter: 2157eac1c2a522e32c3e5d983146b9a11c7731ad
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
@@ -72,6 +79,6 @@ SPEC CHECKSUMS:
   HWCollectionView: 8285c039971ae82a560fc754b4704991e79495e3
   TesseractOCRiOS: 729989db3984bb60ba3addb053569b172d48c409
 
-PODFILE CHECKSUM: 723d3de0c3220942a0dbde52265bba66f2e4b88d
+PODFILE CHECKSUM: fc63ea603e179ff3b7f354045bf2c4ae681cdb90
 
 COCOAPODS: 1.2.0.beta.3

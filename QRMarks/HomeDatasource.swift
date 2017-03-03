@@ -47,7 +47,11 @@ class HomeDatasource: CollectionViewDatasource {
         if controller == nil { return objects?[indexPath.item] }
         
         if !(controller?.isSearching)! {
-            return filteredObjects?[indexPath.item]
+            if filteredObjects?.count == 0 {
+                return nil
+            }
+            
+            return filteredObjects?[indexPath.item] ?? nil
         } else {
             return objects?[indexPath.item]
         }

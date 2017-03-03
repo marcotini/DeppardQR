@@ -15,6 +15,7 @@ class User {
     internal var _address: [String : String]?
     internal var _qrUrl: String?
     internal var _numbers: [String] = []
+    internal var _scanned_url: String?
     private var _objects: Dictionary<String, AnyObject> = [:]
     
     static let main = User()
@@ -37,11 +38,16 @@ class User {
     }
     
     var qrUrl: String? {
-        return _qrUrl
+        // May look at seeing wether is worth even storing the qrUrl
+        return _qrUrl ?? _uid
     }
     
     var numbers: [String]? {
         return _numbers
+    }
+    
+    var scanned_url: String? {
+        return _scanned_url
     }
     
     var objects: Dictionary<String, AnyObject> {
@@ -56,6 +62,7 @@ class User {
         if let name = userData["name"] as? String { _name = name }
         if let companyName = userData["company_name"] as? String { _companyName = companyName }
         if let qrUrl = userData["qr_url"] as? String { _qrUrl = qrUrl }
+        if let scanned_url = userData["scanned_url"] as? String { _scanned_url = scanned_url }
         if let objects = userData["scanned"] as? Dictionary<String, AnyObject> { _objects = objects }
     }
     

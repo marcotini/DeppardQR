@@ -43,7 +43,7 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
         self.searchController.searchBar.tintColor = .white
         
         self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.dimsBackgroundDuringPresentation = true
+        self.searchController.dimsBackgroundDuringPresentation = false
         
         self.navigationItem.titleView = searchController.searchBar
         
@@ -83,6 +83,7 @@ extension HomeViewController: UISearchControllerDelegate, UISearchResultsUpdatin
             isSearching = false
             
             collectionView?.reloadData()
+            searchBar.setShowsCancelButton(false, animated: true)
             searchBar.endEditing(true)
         } else {
             isSearching = true
@@ -101,6 +102,7 @@ extension HomeViewController: UISearchControllerDelegate, UISearchResultsUpdatin
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+        view.endEditing(true)
     }
     
 }

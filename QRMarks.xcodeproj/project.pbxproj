@@ -34,6 +34,8 @@
 		C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C711D81E571A9E001A130F /* QRDatasource.swift */; };
 		C8CD17041E55C0090033EF45 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD17031E55C0090033EF45 /* DataService.swift */; };
 		C8E511B21E66CC3F005A19CE /* CaptureSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E511B11E66CC3F005A19CE /* CaptureSessionDelegate.swift */; };
+		C8F9928E1E68753800E07EB0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9928D1E68753800E07EB0 /* RegisterViewController.swift */; };
+		C8F992901E68831900E07EB0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9928F1E68831900E07EB0 /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		C8C711D81E571A9E001A130F /* QRDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDatasource.swift; sourceTree = "<group>"; };
 		C8CD17031E55C0090033EF45 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C8E511B11E66CC3F005A19CE /* CaptureSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSessionDelegate.swift; sourceTree = "<group>"; };
+		C8F9928D1E68753800E07EB0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C8F9928F1E68831900E07EB0 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +122,7 @@
 			children = (
 				C8301B2B1E672E5400A54F75 /* TODO */,
 				C80C0F311E4F2D4700A3321F /* AppDelegate.swift */,
-				C86A2A771E5601B000772855 /* DownloadManager.swift */,
-				C859DEBE1E5EF0E900AD4DF9 /* Analytics.swift */,
+				C8B4027C1E69CAA400CA3363 /* Managers */,
 				C8445B4B1E51FD91003FD4A4 /* Model */,
 				C8445B4C1E51FD9B003FD4A4 /* View */,
 				C8C711DD1E571BF6001A130F /* Delegate */,
@@ -139,6 +142,7 @@
 			children = (
 				C8445B4A1E51FD82003FD4A4 /* Super */,
 				C865FEC31E573F24001EE6DA /* SplashVc.swift */,
+				C8F9928D1E68753800E07EB0 /* RegisterViewController.swift */,
 				C8C5223E1E55C21A0007F49C /* HomeViewController.swift */,
 				C80C0F331E4F2D4700A3321F /* QRViewPage.swift */,
 				C840C96E1E51D6D6005FE361 /* QRReaderController.swift */,
@@ -193,6 +197,16 @@
 			name = Extra;
 			sourceTree = "<group>";
 		};
+		C8B4027C1E69CAA400CA3363 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C86A2A771E5601B000772855 /* DownloadManager.swift */,
+				C8F9928F1E68831900E07EB0 /* AuthManager.swift */,
+				C859DEBE1E5EF0E900AD4DF9 /* Analytics.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		C8C522491E55CB290007F49C /* Super */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +249,7 @@
 				C80C0F2C1E4F2D4700A3321F /* Resources */,
 				0A9576BD463BE54C576B018F /* [CP] Embed Pods Frameworks */,
 				AB494CCE146F031B0FB6E6A7 /* [CP] Copy Pods Resources */,
+				C8B4027B1E69AABD00CA3363 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +358,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QRMarks/Pods-QRMarks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8B4027B1E69AABD00CA3363 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 824cc0e6ac41d91794516857cb79cbe75f9f3681 64f59ec7dad6136b39b8eddfd4fb98ab74c35e1fc53bc94ee655ea7462906e48";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -361,6 +389,8 @@
 				C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */,
 				C86A2A761E55EBCA00772855 /* Posts.swift in Sources */,
 				C865FEC41E573F24001EE6DA /* SplashVc.swift in Sources */,
+				C8F9928E1E68753800E07EB0 /* RegisterViewController.swift in Sources */,
+				C8F992901E68831900E07EB0 /* AuthManager.swift in Sources */,
 				C8445B461E51FD30003FD4A4 /* QRDelegate.swift in Sources */,
 				C86A2A781E5601B000772855 /* DownloadManager.swift in Sources */,
 				C8C522431E55C4C30007F49C /* Anchor.swift in Sources */,
