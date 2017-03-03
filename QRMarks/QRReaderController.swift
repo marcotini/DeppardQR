@@ -15,16 +15,17 @@ class QRReaderController: ReaderViewController, CaptureSessionDelegate {
         super.viewDidLoad()
         
         self.delegate = self
-        
-        if isAuthorized() {
-            captureSession?.startRunning()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Error Handling
+        
+        if isAuthorized() {
+            captureSession?.startRunning()
+        }
+        
+        
         if error != nil { createAlert((error?.localizedDescription)!); return }
     }
     
