@@ -172,7 +172,46 @@
                     <view key="view" contentMode="scaleToFill" id="syi-AB-N8N">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nZ6-7e-wK3">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zWW-P9-hqi">
+                                        <rect key="frame" x="0.0" y="56" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zWW-P9-hqi" id="6IT-RF-gPg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="MeV-2P-a46">
+                                        <rect key="frame" x="0.0" y="100" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MeV-2P-a46" id="Sw8-bw-dpy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yw1-Jb-gZv">
+                                        <rect key="frame" x="0.0" y="144" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yw1-Jb-gZv" id="s7d-bL-AIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nZ6-7e-wK3" firstAttribute="top" secondItem="w54-2J-6l8" secondAttribute="bottom" id="NXD-7I-eWA"/>
+                            <constraint firstAttribute="trailing" secondItem="nZ6-7e-wK3" secondAttribute="trailing" id="fvD-Mn-xJf"/>
+                            <constraint firstItem="nZ6-7e-wK3" firstAttribute="leading" secondItem="syi-AB-N8N" secondAttribute="leading" id="j2C-26-vv5"/>
+                            <constraint firstItem="Iar-Zz-cBH" firstAttribute="top" secondItem="nZ6-7e-wK3" secondAttribute="bottom" id="jz1-M5-VYg"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="iOi-IG-gwa" kind="show" id="SlQ-Mz-9yb"/>
@@ -405,7 +444,7 @@
         <image name="Business-Cards-Examples-With-Degree-2" width="1200" height="750"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SdM-0I-neD"/>
+        <segue reference="SlQ-Mz-9yb"/>
         <segue reference="tmj-1F-A6g"/>
     </inferredMetricsTieBreakers>
 </document>

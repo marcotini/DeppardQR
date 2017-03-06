@@ -10,9 +10,9 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7B4C160F-CFDF-4A0A-A537-B34097B7163F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "BC5CBC93E5CFA07D08F0B9B5364C895AD73D7DAD" : "..\/..\/Frameworks\/CocoaPods\/HWCollectionView",
-    "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6" : "..\/..\/Frameworks\/CocoaPods\/FIFIlter",
-    "0D7373761BA592A09E0E2A0B1017289564B23FEC" : "QRMarks\/"
+    "BC5CBC93E5CFA07D08F0B9B5364C895AD73D7DAD" : "..\/CocoaPods\/HWCollectionView",
+    "5B3A5666F79E3FEBE3C885041D77C72EDB378EB6" : "..\/CocoaPods\/FIFIlter",
+    "0D7373761BA592A09E0E2A0B1017289564B23FEC" : "DeppardQR\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "QRMarks",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
