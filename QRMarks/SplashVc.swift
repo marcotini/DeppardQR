@@ -26,7 +26,7 @@ class SplashVC: UIViewController, DownloadManagerDelegate {
         
         if AuthManager.isLoggedIn() {
             let uid = User.main.uid ?? AuthManager.uid
-            downloader = DownloadManager(uid, withFIRReference: DataService.Singleton.REF_USERS)
+            downloader = DownloadManager(uid!, withFIRReference: DataService.Singleton.REF_USERS)
             downloader?.delegate = self
             downloader?.downloadFirebaseUserObjects()
         } else {

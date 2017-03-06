@@ -34,8 +34,6 @@ class Analytics {
         var errorText = error.localizedDescription 
         let username = user?.name ?? "N/A"
         
-        NSLog("\(errorText)")
-        
         if errorText.characters.count > 100 {
             let endOfText = errorText.index(errorText.startIndex, offsetBy: 97)
             errorText = errorText.substring(to: endOfText)

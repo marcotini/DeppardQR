@@ -78,4 +78,8 @@ class User {
         self._objects.updateValue("true" as AnyObject, forKey: uid)
     }
     
+    func update(objects: Dictionary<String, AnyObject>) {
+        self._objects.removeAll()
+        self._objects = objects
+    }
 }

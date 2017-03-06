@@ -9,9 +9,13 @@
 import UIKit
 import Firebase
 
+enum AuthType {
+    case logIn, signUp
+}
+
 protocol AuthManagerDelegate: class {
     
-    func authManager(wasAuthorised auth: Bool, with error: Error?)
+    func authManager(wasAuthorised auth: Bool, with error: Error?, _ type: AuthType)
     
 }
 
@@ -53,16 +57,17 @@ extension AuthManager {
 
 extension AuthManager {
 
-    func login(withEmail email: String, password: String) {
+    func logIn(withEmail email: String, password: String) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(wasAuthorised: false, with: error)
+                self.delegate?.authManager(wasAuthorised: false, with: error, .logIn)
                 return
             }
             
             guard let user = user else {
                 self.delegate?.authManager(wasAuthorised: false,
-                                           with: AMError.guardFail(#function, #line))
+                                           with: AMError.guardFail(#function, #line),
+                                           .logIn)
                 return
             }
             
@@ -73,7 +78,7 @@ extension AuthManager {
             
             self.completeCreateUser(user.uid, withUserData: userData)
             Analytics.logLogin()
-            self.delegate?.authManager(wasAuthorised: true, with: nil)
+            self.delegate?.authManager(wasAuthorised: true, with: nil, .logIn)
             return
         })
     }
@@ -81,13 +86,14 @@ extension AuthManager {
     func signUp(withEmail email: String, password: String) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(wasAuthorised: false, with: error)
+                self.delegate?.authManager(wasAuthorised: false, with: error, .signUp)
                 return
             }
             
             guard let user = user else {
                 self.delegate?.authManager(wasAuthorised: false,
-                                           with: AMError.guardFail(#function, #line))
+                                           with: AMError.guardFail(#function, #line),
+                                           .signUp)
                 return
             }
             
@@ -98,12 +104,12 @@ extension AuthManager {
             
             self.completeCreateUser(user.uid, withUserData: userData)
             Analytics.logSignUp()
-            self.delegate?.authManager(wasAuthorised: true, with: nil)
+            self.delegate?.authManager(wasAuthorised: true, with: nil, .signUp)
             return
         })
     }
     
-    func signUp(withEmail email: String, password: String, extraData: Dictionary<String, String>) {
+    func signUp(withEmail email: String, password: String, _ extraData: Dictionary<String, String>) {
         //
     }
     

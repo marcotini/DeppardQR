@@ -20,11 +20,9 @@ class QRReaderController: ReaderViewController, CaptureSessionDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         if isAuthorized() {
             captureSession?.startRunning()
         }
-        
         
         if error != nil { createAlert((error?.localizedDescription)!); return }
     }
@@ -34,7 +32,6 @@ class QRReaderController: ReaderViewController, CaptureSessionDelegate {
     }
     
     func caughtCode(_ data: String) {
-        Analytics.logQR(by: User.main, for: data)
         captureSession?.stopRunning()
         createAlert(with: data)
     }
@@ -54,13 +51,22 @@ class QRReaderController: ReaderViewController, CaptureSessionDelegate {
     
     // Alert for when QR is scanned
     func createAlert(with qrString: String?) {
+        guard let string = removeUrl(fromData: qrString!) else { return }
+        print(string as Any)
+        
         let alert = UIAlertController(title: "QR Scanned", message: "A new QR code has been scanned", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             self.captureSession?.startRunning()
         }
         let defaultAction = UIAlertAction(title: "Accept", style: .default) { (action) in
-            NSLog(qrString!)
-            self.tabBarController?.selectedIndex = 0
+            Analytics.logQR(by: User.main, for: string)
+            
+            // Sets the upload manager and calls the `addNewObjects` method
+            let downloadManager = DownloadManager(User.main.uid!,
+                                                  withFIRReference: DataService.Singleton.REF_USERS)
+            downloadManager.addNewObjects(withUUID: string) {
+                self.tabBarController?.selectedIndex = 0
+            }
         }
         
         alert.addAction(defaultAction)

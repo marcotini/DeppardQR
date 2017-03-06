@@ -12,7 +12,7 @@ import Foundation
 class Posts: User {
     
     override init() {
-        raiseInit("init(_:dict:)")
+        raise(init: "init(_:dict:)")
     }
     
     init(_ key: String?, dict: Dictionary<String, AnyObject>) {

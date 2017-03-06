@@ -10,17 +10,10 @@ import UIKit
 import HWCollectionView
 import Firebase
 
-//protocol DownloadManagerDatasource: class {
-//    func downloadManager(didDownload userData: Dictionary<String, AnyObject>, for uid: String)
-//}
-//
-//typealias Downloading = (_ post: Array<Any>) -> Void
-//typealias DownloadingUser = (_ uid: String, _ post: Dictionary<String, AnyObject>) -> Void
-
 /**
  Firebase database download/upload manager
  */
-class DownloadManager: Downloadable, Uploadable {
+class DownloadManager: Networkable {
     
     private(set) var _firebaseRef: FIRDatabaseReference?
     
@@ -35,7 +28,7 @@ class DownloadManager: Downloadable, Uploadable {
     var queryByChild: String?
     
     required init?() {
-        raiseInit("init(withFIRReference:)")
+        raise(init: "init(withFIRReference:)")
         return nil
     }
     
@@ -43,11 +36,16 @@ class DownloadManager: Downloadable, Uploadable {
         self._firebaseRef = ref
     }
     
-    init(_ uid: String?, withFIRReference ref: FIRDatabaseReference) {
-        self._uid = uid ?? "2EA66C20-4F71-45F7-8742-5816B9FD60F3"
+    init(_ uid: String, withFIRReference ref: FIRDatabaseReference) {
+        self._uid = uid
         self._firebaseRef = ref
     }
-    
+}
+
+// MARK: - DownloadManager
+
+extension DownloadManager {
+
     func downloadFirebaseObjects() {
         self.downloadFirebaseObjects { (posts) in
             self.delegate?.downloadManager(didDownload: posts)
@@ -55,9 +53,7 @@ class DownloadManager: Downloadable, Uploadable {
     }
     
     func downloadFirebaseUserObjects(with uid: String? = nil) {
-        if self._uid == nil && uid != nil {
-            self._uid = uid
-        }
+        isUIDInitalised(for: #function)
         
         downloadFirebaseUserObjects { (uid, userData) in
             self.delegate?.downloadManager(didDownload: userData, for: uid)
@@ -111,18 +107,103 @@ class DownloadManager: Downloadable, Uploadable {
             }
         })
     }
+}
+
+// MARK: - Upload Methods
+
+extension DownloadManager {
     
-    func addNewObjects(with uid: String?, _ completion: @escaping (Void) -> Void) {
-        _firebaseRef?.child(self._uid!).child("scanned").updateChildValues([uid!:"true"])
+    func addNewObjects(withUUID uid: String, _ completion: @escaping Uploading) {
+        isUIDInitalised(for: #function)
         
-        // Testing...
-        _firebaseRef?.updateChildValues([uid!:"true"])
-        _firebaseRef?.child(uid!).updateChildValues(["name":"nil"])
+        if User.main.objects.isEmpty {
+            _firebaseRef?.child(self._uid!).updateChildValues(["scanned" : "null"])
+        }
         
-        // Need to update the objects variable inside of User because even if the database has the new uid it won't set it inside the objects array unless User.main.objects contains the uid
-        User.main.update(uid!)
-        print(User.main.objects)
+        // check to see if already scanned
+        if !User.main.objects.contains(key: uid) {
+            // sets up the dictionary
+            let dict = [uid : "true"]
+            
+            // Updates the database
+            _firebaseRef?.child(self._uid!).child("scanned").updateChildValues(dict)
+            
+            // calls the internal downloading function
+            internalDownloading({ (objects) in
+                
+                // Updates the `user.main.objects`
+                User.main.update(objects: objects)
+                
+                // Ends the completion handler
+                completion()
+            })
+        } else {
+            completion()
+        }
+    }
+    
+    func updateUser(withObjects objects: Dictionary<AnyHashable, Any>, _ completion: @escaping Uploading) {
+        
+        if self._uid != nil {
+            _firebaseRef?.child(self._uid!).updateChildValues(objects)
+        }
         
         completion()
+    }
+    
+    private func internalDownloading(_ completion: @escaping (Dictionary<String, AnyObject>) -> Void) {
+        isUIDInitalised(for: #function)
+        // Initalised the dictionary
+        var dict: Dictionary<String, AnyObject> = [:]
+        
+        // starts the download for the scanned items
+        _firebaseRef?.child(self._uid!).child("scanned").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    
+                    // Updates the dictionary to become like [uid:"true"]
+                    dict.updateValue("true" as AnyObject, forKey: snap.key)
+                }
+            }
+            
+            // ends the completion handler
+            completion(dict)
+        })
+    }
+    
+    fileprivate func isUIDInitalised(for function: String) {
+        if self._uid == nil {
+            fatalError("No uid initalised, please use `init(_:withFIRReference:)` instead if wishing to use `\(function)`")
+        }
+    }
+}
+
+/**
+ An organiser for the infomation before it uploaded to firebase
+ */
+class FirebaseUploaderOrganiser {
+    
+    static func organise(_ userDetails: Dictionary<AnyHashable, Any>,
+                         _ address: [String]?,
+                         _ numbers: [String]?) -> Dictionary<AnyHashable, Any>? {
+        guard address != nil && numbers != nil else { return userDetails }
+        var dict = userDetails as Dictionary<AnyHashable, Any>
+        
+        if address != nil {
+            dict.updateValue(address as Any, forKey: "address")
+        }
+        
+        if numbers != nil {
+            dict.updateValue(numbers as Any, forKey: "numbers")
+        }
+        
+        return dict
+    }
+    
+}
+
+extension Dictionary {
+    func contains(key: String) -> Bool {
+        return self.keyIsEqual(key)
     }
 }

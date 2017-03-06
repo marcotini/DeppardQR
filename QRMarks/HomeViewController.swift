@@ -32,7 +32,6 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
         datasource?.downloadManager = DownloadManager(withFIRReference: DataService.Singleton.REF_USERS)
         datasource?.downloadManager?.delegate = self
         datasource?.downloadManager?.queryByChild = "company_name"
-        datasource?.downloadManager?.downloadFirebaseObjects()
 
         // Required calls to set up a search contoller and insert it inside UINavigationItem
         self.searchController = UISearchController(searchResultsController: nil)
@@ -52,11 +51,25 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
         collectionView?.refreshControl = refreshControl()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+        
+        datasource?.downloadManager?.downloadFirebaseObjects()
+    }
+    
     // Delegate Function
     func downloadManager(didDownload objectData: Array<Any>) {
         print(#function)
-        
         datasource?.objects = objectData
+        
+        if (self.collectionView?.refreshControl?.isRefreshing)! {
+            self.collectionView?.refreshControl?.endRefreshing()
+        }
+    }
+    
+    override func handleRefresh() {
+        datasource?.downloadManager?.downloadFirebaseObjects()
     }
 }
 

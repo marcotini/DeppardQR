@@ -19,7 +19,27 @@ private let _URL_START : String = "https://qr-cards-4b4e2.firebaseio.com/Users"
 /// - Parameter uid: The Users UID that will send added to the url
 /// - Returns: The URL for the serarched user
 func createUrl(_ uid: String) -> String {
+    print(#function)
     return "\(_URL_START)/\(uid)"
+}
+
+func removeUrl(fromData data: String) -> String? {
+    print(#function)
+    if check(url: data) {
+        return removeBase(from: data)
+    } else {
+        return nil
+    }
+}
+
+private func removeBase(from url: String) -> String {
+    print(#function)
+    return url.replacingOccurrences(of: "\(_URL_START)/", with: "")
+}
+
+private func check(url: String) -> Bool {
+    print(#function)
+    return url.contains(_URL_START)
 }
 
 /// UID creation variable
@@ -39,8 +59,12 @@ var GlobalUserInitiatedQueue: DispatchQueue {
 /// A Function to raise an NSException that involves not supported `init`s without writting all the lines out over and over again
 ///
 /// - Parameter function: The string name for a function that is to be used in place of the one calling the exception
-func raiseInit(_ function: String) {
+func raise(init function: String) {
     NSException(name: .genericException, reason: "init() is not supported, please use \(function) instead", userInfo: nil).raise()
+}
+
+func raise(function: String, _ replace: String) {
+    NSException(name: .genericException, reason: "\(function) is not supported, please use \(replace) instead", userInfo: nil).raise()
 }
 
 precedencegroup BooleanPrecedence { associativity: left }
@@ -116,7 +140,6 @@ extension Dictionary {
             }
             
             stringOuput += "\(strKey.capitalized) : \(value)"
-            
             x += 1
         }
         

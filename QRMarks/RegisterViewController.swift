@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController, AuthManagerDelegate {
             }
             
             if isAuthReady(_isLoggingIn) {
-                authManager?.login(withEmail: email, password: password)
+                authManager?.logIn(withEmail: email, password: password)
             } else {
                 //
             }
@@ -110,23 +110,19 @@ class RegisterViewController: UIViewController, AuthManagerDelegate {
     }
     
     // MARK: AuthManagerDelegate
-    func authManager(wasAuthorised auth: Bool, with error: Error?) {
-        if auth || error == nil {
-            segue(_isLoggingIn)
-        } else {
-            self.alert(forError: error)
-        }
-    }
     
-    // MARK: Navigation
-    func segue(_ loggingIn: Bool) {
-        if loggingIn {
+    func authManager(wasAuthorised auth: Bool, with error: Error?, _ type: AuthType) {
+        if (!auth) || (error != nil) {
+            self.alert(forError: error)
+            return
+        }
+        
+        if type == .logIn {
             self.dismiss(animated: true, completion: nil)
         } else {
             self.alert()
         }
     }
-    
 }
 
 /*
