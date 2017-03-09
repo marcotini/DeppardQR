@@ -35,13 +35,13 @@ class qrViewDatasource: QRDatasource {
     // Private function to create QR code for main user
     private func createQR() -> UIImage? {
         let message = createUrl(User.main.qrUrl!) //User.main.qrUrl
-        let value: [Parameter] = [(.inputCorrectionLevel, "H")]
+        let parameters: [Parameter] = [(.inputCorrectionLevel, "H")]
         
         print(message as Any)
         return FIImage(
-            message: message.data,
+            withMessage: message.data,
             imageView: imageView,
-            parameters: value,
+            parameters: parameters,
             effect: .CIQRCodeGenerator
         )
     }

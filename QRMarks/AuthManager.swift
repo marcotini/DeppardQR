@@ -15,22 +15,28 @@ enum AuthType {
 
 protocol AuthManagerDelegate: class {
     
-    func authManager(wasAuthorised auth: Bool, with error: Error?, _ type: AuthType)
+    func authManager(_ authManager: AuthManager, wasAuthorised auth: Bool, with error: Error?, for type: AuthType)
     
 }
 
-class AuthManager {
+class AuthManager: NSObject {
     
+    /** Delegate */
     weak var delegate: AuthManagerDelegate?
     
+    /** uid */
     static var uid: String?
     
-    init() { }
+    /** uid */
+    internal(set) var uid: String?
+    
+    override init() { }
     
 }
 
 extension AuthManager {
 
+    /** Sign out function */
     static func signOut(_ completion: ((Error?) -> Void)? = nil) {
         do {
             try FIRAuth.auth()?.signOut()
@@ -44,6 +50,7 @@ extension AuthManager {
         }
     }
     
+    /** Delegate */
     static func isLoggedIn() -> Bool {
         guard let user = FIRAuth.auth()?.currentUser else { return false }
         self.uid = user.uid
@@ -53,21 +60,19 @@ extension AuthManager {
     
 }
 
-//FIRAuth
-
+/** Extension */
 extension AuthManager {
 
+    /** Delegate */
     func logIn(withEmail email: String, password: String) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(wasAuthorised: false, with: error, .logIn)
+                self.delegate?.authManager(self, wasAuthorised: false, with: error, for: .logIn)
                 return
             }
             
             guard let user = user else {
-                self.delegate?.authManager(wasAuthorised: false,
-                                           with: AMError.guardFail(#function, #line),
-                                           .logIn)
+                self.delegate?.authManager(self, wasAuthorised: false, with: AMError.guardFail(#function, (#line - 1)), for: .logIn)
                 return
             }
             
@@ -76,24 +81,24 @@ extension AuthManager {
                 "email" : user.email!
             ]
             
-            self.completeCreateUser(user.uid, withUserData: userData)
             Analytics.logLogin()
-            self.delegate?.authManager(wasAuthorised: true, with: nil, .logIn)
+            
+            self.completeCreate(user: user, withUserData: userData)
+            self.delegate?.authManager(self, wasAuthorised: true, with: nil, for: .logIn)
             return
         })
     }
     
+    /** Delegate */
     func signUp(withEmail email: String, password: String) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(wasAuthorised: false, with: error, .signUp)
+                self.delegate?.authManager(self, wasAuthorised: false, with: error, for: .signUp)
                 return
             }
             
             guard let user = user else {
-                self.delegate?.authManager(wasAuthorised: false,
-                                           with: AMError.guardFail(#function, #line),
-                                           .signUp)
+                self.delegate?.authManager(self, wasAuthorised: false, with: AMError.guardFail(#function, #line), for: .signUp)
                 return
             }
             
@@ -102,19 +107,27 @@ extension AuthManager {
                 "email" : user.email!
             ]
             
-            self.completeCreateUser(user.uid, withUserData: userData)
             Analytics.logSignUp()
-            self.delegate?.authManager(wasAuthorised: true, with: nil, .signUp)
+            
+            self.completeCreate(user: user, withUserData: userData)
+            self.delegate?.authManager(self, wasAuthorised: true, with: nil, for: .signUp)
             return
         })
     }
     
-    func signUp(withEmail email: String, password: String, _ extraData: Dictionary<String, String>) {
+    /** Delegate */
+    func signUp(withEmail email: String, password: String, userData: Dictionary<String, String>) {
         //
     }
     
-    private func completeCreateUser(_ uid: String, withUserData userData: Dictionary<String, String>) {
-        DataService.Singleton.createFIRDBUser(uid, userData: userData)
+}
+
+private extension AuthManager {
+
+    /** Delegate */
+    func completeCreate(user: FIRUser, withUserData userData: Dictionary<String, String>) {
+        self.uid = user.uid
+        DataService.Singleton.createFIRDBUser(user.uid, userData: userData)
     }
 }
 

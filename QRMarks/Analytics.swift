@@ -10,16 +10,22 @@ import Foundation
 import Firebase
 import Crashlytics
 
+/**  
+ 
+ */
 class Analytics {
     
+    /**  */
     static func logLogin() {
         Answers.logLogin(withMethod: "Firebase", success: nil, customAttributes: nil)
     }
     
+    /**  */
     static func logSignUp() {
         Answers.logSignUp(withMethod: "Firebase", success: nil, customAttributes: nil)
     }
     
+    /**  */
     static func logQR(by user: User, for scannie: String) {
         let username = user.name ?? "unknown"
         
@@ -29,6 +35,7 @@ class Analytics {
             ])
     }
     
+    /**  */
     static func logError(by user: User?, for error: Error?) {
         guard let error = error else { return }
         var errorText = error.localizedDescription 
@@ -45,5 +52,12 @@ class Analytics {
             "Error" : errorText as NSObject
             ])
         
+    }
+    
+    /**  */
+    static func logSearch(_ search: String, byUser user: User) {
+        let username = user.name ?? "N/A"
+        
+        Answers.logSearch(withQuery: search, customAttributes: ["User" : username])
     }
 }

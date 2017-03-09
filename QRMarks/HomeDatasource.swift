@@ -9,7 +9,7 @@
 import UIKit
 import HWCollectionView
 
-class HomeDatasource: CollectionViewDatasource {
+class HomeDatasource: HWCollectionViewDatasource {
     
     required init(withCollectionView collectionView: UICollectionView) {
         super.init(withCollectionView: collectionView)
@@ -17,16 +17,16 @@ class HomeDatasource: CollectionViewDatasource {
         print(#function)
     }
     
-    required init(withCollectionView collectionView: UICollectionView, _ objects: [Any]) {
-        super.init(withCollectionView: collectionView, objects)
+    required init(withCollectionView collectionView: UICollectionView, objects: [Any]) {
+        super.init(withCollectionView: collectionView, objects: objects)
         
         print(#function)
     }
     
-    override func cellClasses() -> [CollectionViewCell.Type] {
+    override func cellClasses() -> [HWCollectionViewCell.Type] {
         print(#function)
         
-        return [IBCollectionViewCell.self]
+        return [PostCell.self]
     }
     
     override func numberOfItems(in section: Int) -> Int {
@@ -46,7 +46,7 @@ class HomeDatasource: CollectionViewDatasource {
         
         if controller == nil { return objects?[indexPath.item] }
         
-        if !(controller?.isSearching)! {
+        if (controller?.isSearching)! {
             if filteredObjects?.count == 0 {
                 return nil
             }

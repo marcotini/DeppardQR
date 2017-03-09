@@ -9,9 +9,12 @@
 import UIKit
 import HWCollectionView
 
-class HomeViewController: CollectionViewController, DownloadManagerDelegate {
+class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
     
+    let kCellHeight: CGFloat = 80.0
+    let kItemSpace: CGFloat = -20.0
     var searchController: UISearchController!
+    var date: TimeObject!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -19,10 +22,10 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        print(#file)
-        print(#function)
         
         collectionView?.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
+        
+        date = TimeObject(withTime: NSDate())
         
         // Sets up the datasource and download Manager
         datasource = HomeDatasource(withCollectionView: self.collectionView!)
@@ -61,9 +64,11 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
     // Delegate Function
     func downloadManager(didDownload objectData: Array<Any>) {
         print(#function)
+        self.collectionView?.refreshControl?.attributedTitle = NSAttributedString(string: date.timeText)
         datasource?.objects = objectData
         
         if (self.collectionView?.refreshControl?.isRefreshing)! {
+            self.date.update(time: NSDate())
             self.collectionView?.refreshControl?.endRefreshing()
         }
     }
@@ -74,11 +79,41 @@ class HomeViewController: CollectionViewController, DownloadManagerDelegate {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print(#function)
         
-        return CGSize(width: view.frame.width, height: 70)
+        return CGSize(width: view.bounds.width, height: kCellHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return kItemSpace
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+    }
+}
+
+/**
+ This is overridden due to containerView being a new item that was added in PostCell and that is the new background for the cell
+ 
+ May Change Post class to hold the hex string for the cell so that it can be set in the post cell without overriding the cellForItemAt
+ */
+extension HomeViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print(#function)
+        
+        guard let cls = datasource?.cellClasses().first else { return UICollectionViewCell() }
+        let cell = collectionView.deqeueCell(with: cls.reuseId, for: indexPath) as! PostCell
+        
+        cell.containerView.backgroundColor = datasource?.backgroundColorArray[indexPath.row]
+        cell.datasourceItem = datasource?.item(at: indexPath)
+        
+        return cell
+    }
+    
 }
 
 /**
@@ -114,6 +149,8 @@ extension HomeViewController: UISearchControllerDelegate, UISearchResultsUpdatin
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        Analytics.logSearch(searchBar.text!, byUser: User.main)
+        
         searchBar.endEditing(true)
         view.endEditing(true)
     }

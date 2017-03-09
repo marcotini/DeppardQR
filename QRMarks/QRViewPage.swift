@@ -8,7 +8,6 @@
 //
 
 import UIKit
-import FIFIlter
 
 class QRViewPage: UIViewController, QRDelegate {
 

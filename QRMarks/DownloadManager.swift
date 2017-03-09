@@ -21,12 +21,12 @@ class DownloadManager: Networkable {
     
     var objects: [Any] = []
     
-    var datasource: Datasource?
+    var datasource: HWDatasource?
     
     var delegate: DownloadManagerDelegate?
     
     var queryByChild: String?
-    
+
     required init?() {
         raise(init: "init(withFIRReference:)")
         return nil
@@ -42,17 +42,20 @@ class DownloadManager: Networkable {
     }
 }
 
-// MARK: - DownloadManager
+// MARK: - Download Methods
 
 extension DownloadManager {
-
+    
     func downloadFirebaseObjects() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         self.downloadFirebaseObjects { (posts) in
             self.delegate?.downloadManager(didDownload: posts)
         }
     }
     
-    func downloadFirebaseUserObjects(with uid: String? = nil) {
+    func downloadFirebaseUserObjects() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         isUIDInitalised(for: #function)
         
         downloadFirebaseUserObjects { (uid, userData) in
@@ -62,7 +65,6 @@ extension DownloadManager {
     
     func downloadFirebaseObjects(completion: @escaping Downloading) {
         guard queryByChild != nil else { fatalError("No child to query with") }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         _firebaseRef?.queryOrdered(byChild: queryByChild!).observeSingleEvent(of: .value, with: { (snapshot) in
             self.objects.removeAll()
@@ -81,6 +83,7 @@ extension DownloadManager {
             }
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            NSLog("\(self.objects)")
             completion(self.objects.reversed())
         })
     }
@@ -115,6 +118,7 @@ extension DownloadManager {
     
     func addNewObjects(withUUID uid: String, _ completion: @escaping Uploading) {
         isUIDInitalised(for: #function)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         if User.main.objects.isEmpty {
             _firebaseRef?.child(self._uid!).updateChildValues(["scanned" : "null"])
@@ -135,9 +139,11 @@ extension DownloadManager {
                 User.main.update(objects: objects)
                 
                 // Ends the completion handler
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 completion()
             })
         } else {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             completion()
         }
     }
@@ -183,9 +189,10 @@ extension DownloadManager {
  */
 class FirebaseUploaderOrganiser {
     
-    static func organise(_ userDetails: Dictionary<AnyHashable, Any>,
-                         _ address: [String]?,
-                         _ numbers: [String]?) -> Dictionary<AnyHashable, Any>? {
+    static func organise(
+        _ userDetails: Dictionary<AnyHashable, Any>,
+        _ address: [String]?,
+        _ numbers: [String]?) -> Dictionary<AnyHashable, Any>? {
         guard address != nil && numbers != nil else { return userDetails }
         var dict = userDetails as Dictionary<AnyHashable, Any>
         

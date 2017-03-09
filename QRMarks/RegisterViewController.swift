@@ -111,7 +111,9 @@ class RegisterViewController: UIViewController, AuthManagerDelegate {
     
     // MARK: AuthManagerDelegate
     
-    func authManager(wasAuthorised auth: Bool, with error: Error?, _ type: AuthType) {
+    func authManager(_ authManager: AuthManager, wasAuthorised auth: Bool, with error: Error?, for type: AuthType) {
+        NSLog("Attempting to authorise: \(authManager.uid)")
+        
         if (!auth) || (error != nil) {
             self.alert(forError: error)
             return

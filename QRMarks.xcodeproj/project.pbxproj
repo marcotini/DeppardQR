@@ -21,6 +21,10 @@
 		C8445B461E51FD30003FD4A4 /* QRDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B451E51FD30003FD4A4 /* QRDelegate.swift */; };
 		C8445B481E51FD51003FD4A4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B471E51FD51003FD4A4 /* Util.swift */; };
 		C8445B501E520A4B003FD4A4 /* UserCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */; };
+		C84519CB1E70503700151EC9 /* StickyCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84519CA1E70503700151EC9 /* StickyCollectionViewFlowLayout.swift */; };
+		C84519CD1E70520300151EC9 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84519CC1E70520300151EC9 /* PostCell.swift */; };
+		C84519D41E706EB300151EC9 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84519D31E706EB300151EC9 /* UIColor+Ext.swift */; };
+		C84DC11B1E70BF5600D2DCEA /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84DC11A1E70BF5600D2DCEA /* UIView+Ext.swift */; };
 		C84F03561E65C57F00B6163C /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F03551E65C57F00B6163C /* HomeDatasource.swift */; };
 		C85708C81E523DF60004B574 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C85708C71E523DF60004B574 /* tessdata */; };
 		C859DEBF1E5EF0E900AD4DF9 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859DEBE1E5EF0E900AD4DF9 /* Analytics.swift */; };
@@ -36,6 +40,7 @@
 		C8E511B21E66CC3F005A19CE /* CaptureSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E511B11E66CC3F005A19CE /* CaptureSessionDelegate.swift */; };
 		C8F9928E1E68753800E07EB0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9928D1E68753800E07EB0 /* RegisterViewController.swift */; };
 		C8F992901E68831900E07EB0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9928F1E68831900E07EB0 /* AuthManager.swift */; };
+		C8FB80481E70B14700E68C66 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FB80471E70B14700E68C66 /* Object.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +62,10 @@
 		C8445B451E51FD30003FD4A4 /* QRDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDelegate.swift; sourceTree = "<group>"; };
 		C8445B471E51FD51003FD4A4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C8445B4F1E520A4B003FD4A4 /* UserCreationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreationVC.swift; sourceTree = "<group>"; };
+		C84519CA1E70503700151EC9 /* StickyCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		C84519CC1E70520300151EC9 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		C84519D31E706EB300151EC9 /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		C84DC11A1E70BF5600D2DCEA /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C84F03551E65C57F00B6163C /* HomeDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		C85708C51E5236250004B574 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C85708C71E523DF60004B574 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../Downloads/tessdata; sourceTree = "<group>"; };
@@ -75,6 +84,7 @@
 		C8E511B11E66CC3F005A19CE /* CaptureSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSessionDelegate.swift; sourceTree = "<group>"; };
 		C8F9928D1E68753800E07EB0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C8F9928F1E68831900E07EB0 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		C8FB80471E70B14700E68C66 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,7 @@
 				C80C0F381E4F2D4700A3321F /* Assets.xcassets */,
 				C80C0F3A1E4F2D4700A3321F /* LaunchScreen.storyboard */,
 				C80C0F3D1E4F2D4700A3321F /* Info.plist */,
+				C84519D21E706EA600151EC9 /* Ext */,
 				C885EC6F1E5364A100084C87 /* Extra */,
 			);
 			path = QRMarks;
@@ -164,6 +175,7 @@
 			children = (
 				C840C96A1E51B167005FE361 /* User.swift */,
 				C86A2A751E55EBCA00772855 /* Posts.swift */,
+				C8FB80471E70B14700E68C66 /* Object.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -171,6 +183,7 @@
 		C8445B4C1E51FD9B003FD4A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C84519CC1E70520300151EC9 /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -185,10 +198,20 @@
 			name = Datasource;
 			sourceTree = "<group>";
 		};
+		C84519D21E706EA600151EC9 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				C84519D31E706EB300151EC9 /* UIColor+Ext.swift */,
+				C84DC11A1E70BF5600D2DCEA /* UIView+Ext.swift */,
+			);
+			name = Ext;
+			sourceTree = "<group>";
+		};
 		C885EC6F1E5364A100084C87 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
 				C85708C71E523DF60004B574 /* tessdata */,
+				C84519CA1E70503700151EC9 /* StickyCollectionViewFlowLayout.swift */,
 				C86A2A731E55DDD900772855 /* GoogleService-Info.plist */,
 				C8C522421E55C4C30007F49C /* Anchor.swift */,
 				C8CD17031E55C0090033EF45 /* DataService.swift */,
@@ -387,6 +410,7 @@
 				C8E511B21E66CC3F005A19CE /* CaptureSessionDelegate.swift in Sources */,
 				C8CD17041E55C0090033EF45 /* DataService.swift in Sources */,
 				C8C711D91E571A9E001A130F /* QRDatasource.swift in Sources */,
+				C84519D41E706EB300151EC9 /* UIColor+Ext.swift in Sources */,
 				C86A2A761E55EBCA00772855 /* Posts.swift in Sources */,
 				C865FEC41E573F24001EE6DA /* SplashVc.swift in Sources */,
 				C8F9928E1E68753800E07EB0 /* RegisterViewController.swift in Sources */,
@@ -395,9 +419,13 @@
 				C86A2A781E5601B000772855 /* DownloadManager.swift in Sources */,
 				C8C522431E55C4C30007F49C /* Anchor.swift in Sources */,
 				C840C96F1E51D6D6005FE361 /* QRReaderController.swift in Sources */,
+				C84519CB1E70503700151EC9 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				C84F03561E65C57F00B6163C /* HomeDatasource.swift in Sources */,
+				C8FB80481E70B14700E68C66 /* Object.swift in Sources */,
 				C8C5223F1E55C21A0007F49C /* HomeViewController.swift in Sources */,
+				C84DC11B1E70BF5600D2DCEA /* UIView+Ext.swift in Sources */,
 				C840C96B1E51B167005FE361 /* User.swift in Sources */,
+				C84519CD1E70520300151EC9 /* PostCell.swift in Sources */,
 				C8445B441E51FAE3003FD4A4 /* ReaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
