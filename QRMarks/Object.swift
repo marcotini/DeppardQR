@@ -15,11 +15,13 @@ class TimeObject: NSObject {
     private(set) var timeText: String
     
     init(withTime time: NSDate) {
+        print(#function)
         self.time = time
         self.timeText = "Last updated: \(time)"
     }
     
     func update(time: NSDate) {
+        print(#function)
         self.time = time
         self.timeText = "Last updated: \(time)"
     }

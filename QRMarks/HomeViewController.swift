@@ -9,10 +9,13 @@
 import UIKit
 import HWCollectionView
 
+let backgroundColor = UIColor(white: 1.0, alpha: 0.9)
+
 class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
     
     let kCellHeight: CGFloat = 80.0
     let kItemSpace: CGFloat = -20.0
+    let kFirstItemTransform: CGFloat = 0.05
     var searchController: UISearchController!
     var date: TimeObject!
     
@@ -23,7 +26,9 @@ class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
+        self.view.backgroundColor = UIColor(red: 6, green: 128, blue: 216)
+        collectionView?.backgroundColor = .clear
+        collectionView?.backgroundView?.round(corners: [.topLeft, .topRight], radius: 12)
         
         date = TimeObject(withTime: NSDate())
         
@@ -36,6 +41,9 @@ class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
         datasource?.downloadManager?.delegate = self
         datasource?.downloadManager?.queryByChild = "company_name"
 
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 6, green: 128, blue: 216)
+        self.navigationController?.navigationBar.removeShadow()
+        
         // Required calls to set up a search contoller and insert it inside UINavigationItem
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.delegate = self
@@ -61,10 +69,10 @@ class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
         datasource?.downloadManager?.downloadFirebaseObjects()
     }
     
-    // Delegate Function
     func downloadManager(didDownload objectData: Array<Any>) {
         print(#function)
         self.collectionView?.refreshControl?.attributedTitle = NSAttributedString(string: date.timeText)
+        
         datasource?.objects = objectData
         
         if (self.collectionView?.refreshControl?.isRefreshing)! {
@@ -91,7 +99,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -108,10 +116,15 @@ extension HomeViewController {
         guard let cls = datasource?.cellClasses().first else { return UICollectionViewCell() }
         let cell = collectionView.deqeueCell(with: cls.reuseId, for: indexPath) as! PostCell
         
-        cell.containerView.backgroundColor = datasource?.backgroundColorArray[indexPath.row]
+        cell.cornerView.backgroundColor = datasource?.backgroundColorArray[indexPath.row]
         cell.datasourceItem = datasource?.item(at: indexPath)
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let object = datasource?.item(at: indexPath) as? Posts
+        print(#function, object?.companyName ?? "Unknown")
     }
     
 }
@@ -138,9 +151,12 @@ extension HomeViewController: UISearchControllerDelegate, UISearchResultsUpdatin
             
             // Filter for the searchBar
             datasource?.filteredObjects = datasource?.objects?.filter({
-                if let type = ($0 as! Posts).companyName?.lowercased() as String? {
+                if let type = ($0 as! Posts) as Posts? {
+                    let companyName = type.companyName?.lowercased() ?? "null"
+                    let name = type.name?.lowercased() ?? "null"
+                    
                     let text = searchBar.text?.lowercased()
-                    return (type.contains(text!))
+                    return (companyName.contains(text!)) || (name.contains(text!))
                 } else {
                     return false
                 }

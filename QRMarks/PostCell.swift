@@ -11,7 +11,8 @@ import HWCollectionView
 
 class PostCell: IBCollectionViewCell {
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var cornerView: UIView!
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -23,10 +24,10 @@ class PostCell: IBCollectionViewCell {
     
     override func configCell() {
         
-        containerView.layer.masksToBounds = true
-        containerView.layer.cornerRadius = 12
+        cornerView.layer.masksToBounds = true
+        cornerView.layer.cornerRadius = 12
         
-        let backgroundColor = containerView.backgroundColor
+        let backgroundColor = cornerView.backgroundColor
         companyLabel.textColor = UIColor.headerTextColor(on: backgroundColor!)
         nameLabel.textColor = UIColor.subheaderTextColor(on: backgroundColor!)
         

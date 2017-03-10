@@ -47,6 +47,7 @@ class DownloadManager: Networkable {
 extension DownloadManager {
     
     func downloadFirebaseObjects() {
+        print(#function)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         self.downloadFirebaseObjects { (posts) in
@@ -65,6 +66,7 @@ extension DownloadManager {
     
     func downloadFirebaseObjects(completion: @escaping Downloading) {
         guard queryByChild != nil else { fatalError("No child to query with") }
+        print(#function)
         
         _firebaseRef?.queryOrdered(byChild: queryByChild!).observeSingleEvent(of: .value, with: { (snapshot) in
             self.objects.removeAll()
@@ -83,7 +85,6 @@ extension DownloadManager {
             }
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            NSLog("\(self.objects)")
             completion(self.objects.reversed())
         })
     }

@@ -11,25 +11,25 @@ import UIKit
 extension UIColor {
     
     /// White (0xFFFFFF) with 100% Alpha
-    internal class var primaryDarkBGHeader: UIColor {
+    fileprivate class var primaryDarkBGHeader: UIColor {
         let colour = UIColor(netHex: 0xFFFFFF)
         return colour.withAlphaComponent(1)
     }
     
     /// White (0xFFFFFF) with 70% Alpha
-    internal class var secondayDarkBGHeader: UIColor {
+    fileprivate class var secondayDarkBGHeader: UIColor {
         let colour = UIColor(netHex: 0xFFFFFF)
         return colour.withAlphaComponent(0.7)
     }
     
     /// Black (0x000000) with 87% Alpha
-    internal class var primarylightBGHeader: UIColor {
+    fileprivate class var primarylightBGHeader: UIColor {
         let colour = UIColor(netHex: 0x000000)
         return colour.withAlphaComponent(0.87)
     }
     
     /// Black (0x000000) with 50% Alpha
-    internal class var secondarylightBGHeader: UIColor {
+    fileprivate class var secondarylightBGHeader: UIColor {
         let colour = UIColor(netHex: 0x000000)
         return colour.withAlphaComponent(0.50)
     }
@@ -68,6 +68,6 @@ extension UIColor {
     private var isLight: Bool {
         var white: CGFloat = 0
         getWhite(&white, alpha: nil)
-        return white > 0.3
+        return white > 0.5
     }
 }
