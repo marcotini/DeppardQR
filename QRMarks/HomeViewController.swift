@@ -11,13 +11,13 @@ import HWCollectionView
 
 let backgroundColor = UIColor(white: 1.0, alpha: 0.9)
 
-class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
+// HWCollectionView
+class HomeViewController: HWCollectionViewController, NetworkManagerDelegate {
     
+    var date: TimeObject!
     let kCellHeight: CGFloat = 80.0
     let kItemSpace: CGFloat = -20.0
     let kFirstItemTransform: CGFloat = 0.05
-    var searchController: UISearchController!
-    var date: TimeObject!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -27,8 +27,15 @@ class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 6, green: 128, blue: 216)
-        collectionView?.backgroundColor = .clear
+        
         collectionView?.backgroundView?.round(corners: [.topLeft, .topRight], radius: 12)
+        collectionView?.backgroundColor = .clear
+        
+        if #available(iOS 10.0, *) {
+            collectionView?.refreshControl = refreshControl()
+        } else {
+            // Fallback on earlier versions
+        }
         
         date = TimeObject(withTime: NSDate())
         
@@ -37,52 +44,44 @@ class HomeViewController: HWCollectionViewController, DownloadManagerDelegate {
         datasource?.controller = self
         
         // Sets up the datasources download manager and downloads the firebase objects
-        datasource?.downloadManager = DownloadManager(withFIRReference: DataService.Singleton.REF_USERS)
-        datasource?.downloadManager?.delegate = self
-        datasource?.downloadManager?.queryByChild = "company_name"
-
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 6, green: 128, blue: 216)
-        self.navigationController?.navigationBar.removeShadow()
+        datasource?.networkManager = DownloadManager(withFIRReference: DataService.Singleton.REF_USERS)
+        datasource?.networkManager?.delegate = self
+        datasource?.networkManager?.queryByChild = "company_name"
         
-        // Required calls to set up a search contoller and insert it inside UINavigationItem
-        self.searchController = UISearchController(searchResultsController: nil)
-        self.searchController.delegate = self
-        self.searchController.searchResultsUpdater = self
-        
-        self.searchController.searchBar.delegate = self
-        self.searchController.searchBar.tintColor = .white
-        
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.dimsBackgroundDuringPresentation = false
-        
-        self.navigationItem.titleView = searchController.searchBar
-        
-        self.definesPresentationContext = true
-        
-        collectionView?.refreshControl = refreshControl()
+        let navController = self.navigationController as? SearchNavigationController
+        navController?.delegates = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print(#function)
         
-        datasource?.downloadManager?.downloadFirebaseObjects()
+        datasource?.networkManager?.downloadObjects()
     }
     
-    func downloadManager(didDownload objectData: Array<Any>) {
+    override func refreshOptions() {
+        datasource?.networkManager?.downloadObjects()
+    }
+    
+    func networkManager(_ networkManager: Networkable, didDownload objectData: Array<Any>) {
         print(#function)
-        self.collectionView?.refreshControl?.attributedTitle = NSAttributedString(string: date.timeText)
+        
+        if #available(iOS 10.0, *) {
+            self.collectionView?.refreshControl?.attributedTitle = NSAttributedString(string: date.timeText)
+        } else {
+            // Fallback on earlier versions
+        }
         
         datasource?.objects = objectData
         
-        if (self.collectionView?.refreshControl?.isRefreshing)! {
-            self.date.update(time: NSDate())
-            self.collectionView?.refreshControl?.endRefreshing()
+        if #available(iOS 10.0, *) {
+            if (self.collectionView?.refreshControl?.isRefreshing)! {
+                self.date.update(time: NSDate())
+                self.collectionView?.refreshControl?.endRefreshing()
+            }
+        } else {
+            // Fallback on earlier versions
         }
-    }
-    
-    override func handleRefresh() {
-        datasource?.downloadManager?.downloadFirebaseObjects()
     }
 }
 

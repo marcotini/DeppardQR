@@ -47,11 +47,10 @@ class Analytics {
             errorText += "..."
         }
         
-        Answers.logCustomEvent(withName: "Error", customAttributes: [
+        Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: [
             "User" : username as NSObject,
-            "Error" : errorText as NSObject
+            "Localized Description" : errorText as NSObject
             ])
-        
     }
     
     /**  */

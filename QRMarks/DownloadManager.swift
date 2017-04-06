@@ -10,6 +10,14 @@ import UIKit
 import HWCollectionView
 import Firebase
 
+let fibonacci = sequence(state: (0, 1)) {
+    (state: inout (Int, Int)) -> Int? in
+    defer {state = (state.1, state.0 + state.1)}
+    return state.0
+}
+
+let interval = fibonacci.prefix{ $0 < 1000 }.drop{ $0 < 100 }
+
 /**
  Firebase database download/upload manager
  */
@@ -23,7 +31,7 @@ class DownloadManager: Networkable {
     
     var datasource: HWDatasource?
     
-    var delegate: DownloadManagerDelegate?
+    var delegate: NetworkManagerDelegate?
     
     var queryByChild: String?
 
@@ -33,10 +41,12 @@ class DownloadManager: Networkable {
     }
     
     init(withFIRReference ref: FIRDatabaseReference) {
+        print(#function)
         self._firebaseRef = ref
     }
     
     init(_ uid: String, withFIRReference ref: FIRDatabaseReference) {
+        print(#function)
         self._uid = uid
         self._firebaseRef = ref
     }
@@ -46,25 +56,25 @@ class DownloadManager: Networkable {
 
 extension DownloadManager {
     
-    func downloadFirebaseObjects() {
+    func downloadObjects() {
         print(#function)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        self.downloadFirebaseObjects { (posts) in
-            self.delegate?.downloadManager(didDownload: posts)
+        self.downloadObjects { (posts) in
+            self.delegate?.networkManager?(self, didDownload: posts)
         }
     }
     
-    func downloadFirebaseUserObjects() {
+    func downloadUserObjects() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         isUIDInitalised(for: #function)
         
-        downloadFirebaseUserObjects { (uid, userData) in
-            self.delegate?.downloadManager(didDownload: userData, for: uid)
+        downloadUserObjects { (uid, userData) in
+            self.delegate?.networkManager?(self, didDownload: userData, for: uid)
         }
     }
     
-    func downloadFirebaseObjects(completion: @escaping Downloading) {
+    func downloadObjects(completion: @escaping Downloading) {
         guard queryByChild != nil else { fatalError("No child to query with") }
         print(#function)
         
@@ -89,7 +99,7 @@ extension DownloadManager {
         })
     }
     
-    func downloadFirebaseUserObjects(completion: @escaping DownloadingUser) {
+    func downloadUserObjects(completion: @escaping DownloadingUser) {
         guard let uid = _uid else { return }
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -104,7 +114,7 @@ extension DownloadManager {
                             UIApplication.shared.isNetworkActivityIndicatorVisible = false
                             
                             completion(uid, userDict)
-                            return
+//                            return
                         }
                     }
                 }

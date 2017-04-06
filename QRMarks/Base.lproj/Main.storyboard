@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Ao-vs-eQc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Ao-vs-eQc">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -222,18 +222,18 @@
             </objects>
             <point key="canvasLocation" x="1137" y="499"/>
         </scene>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="PGw-ew-ZKd">
             <objects>
                 <collectionViewController id="3YL-EO-Hpg" customClass="HomeViewController" customModule="QRMarks" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="rlT-Tq-rMW">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rlT-Tq-rMW">
                         <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.023529411760000001" green="0.50196078430000002" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewLayout key="collectionViewLayout" id="YtF-Nk-8Ff" customClass="StickyCollectionViewFlowLayout" customModule="QRMarks"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="rDn-zq-RoM" customClass="PostCell" customModule="QRMarks">
-                                <rect key="frame" x="20" y="0.0" width="375" height="80"/>
+                                <rect key="frame" x="19.666666666666668" y="0.0" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -325,7 +325,7 @@
                             <outlet property="delegate" destination="3YL-EO-Hpg" id="xis-wB-TfD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Home" id="XXc-Uk-VbM"/>
+                    <navigationItem key="navigationItem" id="XXc-Uk-VbM"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myB-c9-2Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,13 +343,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-6A-3iI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiL-6A-3iI" customClass="QRCode" customModule="QRMarks" customModuleProvider="target">
                                 <rect key="frame" x="107" y="84" width="200" height="200"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="IT7-Vu-AS2"/>
                                     <constraint firstAttribute="height" constant="200" id="VWv-F6-age"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="message" value="www.apple.com"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="correctionLevelLetter" value="M"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="messageForCode" value="https://www.google.com"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KD-b5-WgH">
                                 <rect key="frame" x="20" y="304" width="374" height="21"/>
@@ -388,8 +392,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Phe-ST-Nhe"/>
                     <connections>
+                        <outlet property="QRCodeView" destination="PiL-6A-3iI" id="SID-AB-ecn"/>
                         <outlet property="companyName" destination="9KD-b5-WgH" id="R5h-7e-92i"/>
-                        <outlet property="qrView" destination="PiL-6A-3iI" id="7aJ-Kj-VAn"/>
                         <outlet property="userName" destination="FYH-kt-DRF" id="Vmn-nu-vt5"/>
                     </connections>
                 </viewController>
@@ -412,12 +416,17 @@
                             <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ox6-Ov-rX0">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Business-Cards-Examples-With-Degree-2" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-ck-Xy0">
-                                        <rect key="frame" x="0.0" y="-10" width="375" height="667"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Business-Cards-Examples-With-Degree-2" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-ck-Xy0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="gfG-ck-Xy0" firstAttribute="top" secondItem="ox6-Ov-rX0" secondAttribute="top" id="O1W-4k-XEZ"/>
+                                    <constraint firstItem="gfG-ck-Xy0" firstAttribute="leading" secondItem="ox6-Ov-rX0" secondAttribute="leading" id="lAh-k8-9dd"/>
+                                    <constraint firstAttribute="bottom" secondItem="gfG-ck-Xy0" secondAttribute="bottom" id="nJZ-Gp-6KZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="gfG-ck-Xy0" secondAttribute="trailing" id="xpk-qc-FaJ"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5I-25-Rov">
                                 <rect key="frame" x="165.66666666666666" y="680" width="83" height="36"/>
@@ -474,7 +483,7 @@
                                                 <collectionViewLayout key="collectionViewLayout" id="Ndc-fG-AXd" customClass="StickyCollectionViewFlowLayout" customModule="QRMarks" customModuleProvider="target"/>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="hEs-Iz-1lY" customClass="TestCell" customModule="QRMarks" customModuleProvider="target">
-                                                        <rect key="frame" x="-2" y="0.0" width="417" height="50"/>
+                                                        <rect key="frame" x="-1.5" y="0.0" width="417" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="417" height="50"/>
@@ -607,13 +616,12 @@
         <!--Home-->
         <scene sceneID="OSC-qH-AM1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eXh-WJ-rCA" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eXh-WJ-rCA" customClass="SearchNavigationController" customModule="QRMarks" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="G1D-RV-fAg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OBC-LF-IwK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.023529411764705882" green="0.50196078431372548" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -652,7 +660,7 @@
         <image name="Resdevtrans" width="953" height="241"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SlQ-Mz-9yb"/>
-        <segue reference="tmj-1F-A6g"/>
+        <segue reference="SdM-0I-neD"/>
+        <segue reference="hhN-pa-Ey1"/>
     </inferredMetricsTieBreakers>
 </document>

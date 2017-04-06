@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '78393FF8D2C6EB35E3DF84FF2B6C722D'
+               BlueprintIdentifier = '202A07237408AF29DD1738729C7809D4'
                BlueprintName = 'HWCollectionView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'HWCollectionView.framework'>

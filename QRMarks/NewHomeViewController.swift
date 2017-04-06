@@ -19,9 +19,10 @@ class NewHomeViewController: UIViewController {
         print(#function)
         
         
+//        collectionView.controller = self
+        collectionView.hwDatasource = HomeDatasource(withCollectionView: collectionView)
+        collectionView.hwDatasource?.objects = Array(repeating: 2, count: 100)
         collectionView.controller = self
-        collectionView.collectionViewDatasource = HomeDatasource(withCollectionView: collectionView,
-                                                                 objects: Array(repeating: 2, count: 100))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,11 +47,11 @@ class LocalCollectionView: HWCollectionView, UICollectionViewDelegateFlowLayout 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print(#function)
         
-        guard let cls = collectionViewDatasource?.cellClasses().first else { return UICollectionViewCell() }
+        guard let cls = hwDatasource?.cellClasses().first else { return UICollectionViewCell() }
         let cell = collectionView.deqeueCell(with: cls.reuseId, for: indexPath) as! TestCell
         
-        cell.cornerView.backgroundColor = collectionViewDatasource?.backgroundColorArray[indexPath.row]
-        cell.datasourceItem = collectionViewDatasource?.item(at: indexPath)
+        cell.cornerView.backgroundColor = hwDatasource?.backgroundColorArray[indexPath.row]
+        cell.datasourceItem = hwDatasource?.item(at: indexPath)
         cell.configCell()
         
         return cell

@@ -15,6 +15,16 @@ typealias AVAuth = AVAuthorizationStatus
 typealias InputDevice = AVCaptureDevice
 typealias AVReadableCode = AVMetadataMachineReadableCodeObject
 
+enum RVCError: Error {
+    case ios(version: String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .ios(let version) : return "iOS version: \(version) is too low to use current features"
+        }
+    }
+}
+
 class ReaderViewController: UIViewController {
     
     // MARK: Properties
@@ -46,14 +56,18 @@ class ReaderViewController: UIViewController {
         super.viewDidLoad()
         
         // Sets the camera input up, if error makes it through setup, returns out of the VDL else creates the views
-        self.setUpCameraInput { (error, input) in
-            if error != nil {
+        if #available(iOS 10.0, *) {
+            self.setUpCameraInput { (error, input) in
+                if error != nil {
+                    self.error = error
+                    return
+                }
+                
                 self.error = error
-                return
+                self.viewCreation(with: input)
             }
-            
-            self.error = error
-            self.viewCreation(with: input)
+        } else {
+            self.error = RVCError.ios(version: UIDevice.current.systemVersion)
         }
     }
     
@@ -108,6 +122,16 @@ extension ReaderViewController {
         UIGraphicsEndImageContext()
         
         return scaledImage
+    }
+    
+    /// Function to setup reader frame rect, used to help reset view
+    func frameRect(_ width: CGFloat, _ height: CGFloat) -> CGRect {
+        let frame = CGSize(width: width, height: height)
+        let centerX = view.center.x - (frame.width / 2)
+        let centerY = view.center.y - (frame.height / 2)
+        let rect = CGRect(x: centerX, y: centerY, width: frame.width, height: frame.height)
+        
+        return rect
     }
 }
 
@@ -173,16 +197,6 @@ private extension ReaderViewController {
         view.bringSubview(toFront: readerFrameView!)
     }
     
-    /// Function to setup reader frame rect, used to help reset view
-    func frameRect(_ width: CGFloat, _ height: CGFloat) -> CGRect {
-        let frame = CGSize(width: width, height: height)
-        let centerX = view.center.x - (frame.width / 2)
-        let centerY = view.center.y - (frame.height / 2)
-        let rect = CGRect(x: centerX, y: centerY, width: frame.width, height: frame.height)
-        
-        return rect
-    }
-    
 //    func crop(_ image: UIImage, _ rect: CGRect) -> UIImage? {
 //        
 //        var rect = rect
@@ -232,6 +246,7 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+    @available(iOS 10.0, *)
     func takePhoto() {
         if let videoConnection = stillImage?.connection(withMediaType: AVMediaTypeVideo){
             videoConnection.videoOrientation = AVCaptureVideoOrientation.portrait
@@ -240,13 +255,13 @@ extension ReaderViewController :  AVCaptureMetadataOutputObjectsDelegate {
                 (sampleBuffer, error) in
                 
                 if error != nil {
-                    print("\(error)")
+                    print("\(String(describing: error))")
                     self.delegate?.captureSession?(didTakePhoto: UIImage(), with: error)
                 }
                 
                 if sampleBuffer != nil {
                     let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer!, previewPhotoSampleBuffer: nil)
-                    let dataProvider = CGDataProvider(data: imageData as! CFData)
+                    let dataProvider = CGDataProvider(data: imageData! as CFData)
                     let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
                     
                     let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)

@@ -26,7 +26,7 @@ class HomeDatasource: HWCollectionViewDatasource {
     override func cellClasses() -> [HWCollectionViewCell.Type] {
         print(#function)
         
-        return [IBCollectionViewCell.self]
+        return [PostCell.self]
     }
     
     override func numberOfItems(in section: Int) -> Int {

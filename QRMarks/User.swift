@@ -19,7 +19,6 @@ class User {
     private var _objects: Dictionary<String, AnyObject> = [:]
     
     static let main = User()
-    static let viewed = User()
     
     var uid: String? {
         return _uid

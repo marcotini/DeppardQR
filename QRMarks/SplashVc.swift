@@ -10,7 +10,7 @@ import UIKit
 import HWCollectionView
 import Firebase
 
-class SplashVC: UIViewController, DownloadManagerDelegate {
+class SplashVC: UIViewController, NetworkManagerDelegate {
     
     let identi: [String] = ["toHome", "toLogin"]
     
@@ -28,13 +28,17 @@ class SplashVC: UIViewController, DownloadManagerDelegate {
             let uid = User.main.uid ?? AuthManager.uid
             downloader = DownloadManager(uid!, withFIRReference: DataService.Singleton.REF_USERS)
             downloader?.delegate = self
-            downloader?.downloadFirebaseUserObjects()
+            downloader?.downloadUserObjects()
         } else {
             self.performSegue(withIdentifier: self.identi[1], sender: nil)
         }
     }
     
-    func downloadManager(didDownload userData: Dictionary<String, AnyObject>, for uid: String) {
+    func networkManager(_ networkManager: Networkable, didDownload objectData: Array<Any>) {
+        print(#function)
+    }
+    
+    func networkManager(_ networkManager: Networkable, didDownload userData: Dictionary<String, AnyObject>, for uid: String) {
         User.main.setup(user: uid, with: userData)
         
         self.performSegue(withIdentifier: self.identi[0], sender: nil)

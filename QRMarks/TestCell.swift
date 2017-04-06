@@ -8,7 +8,7 @@
 
 import HWCollectionView
 
-class TestCell: IBCollectionViewCell {
+class TestCell: HWCollectionViewCell {
     
     @IBOutlet weak var cornerView: UIView!
     

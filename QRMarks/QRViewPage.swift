@@ -9,31 +9,17 @@
 
 import UIKit
 
-class QRViewPage: UIViewController, QRDelegate {
+class QRViewPage: UIViewController {
 
-    @IBOutlet weak var qrView: UIImageView!
+    @IBOutlet weak var QRCodeView: QRCode!
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var userName: UILabel!
-    
-    // Why datasource you may ask, QR's may be created elsewhere in the program so geting ready...
-    var datasource: QRDatasource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialises the datasource
-        // Also Sets the datasource ImageView, this is needed for the QR creation
-        datasource = qrViewDatasource(withImageView: qrView)
-        
-        // Connects the delegate for the datasource
-        datasource?.controller = self
-        
-        // Tell the datasource to prepare the UI before it calls the reload UI
-        datasource?.prepareUI()
-    }
-    
-    func reloadUI(with image: UIImage) {
-        qrView.image = image
+        guard let uid = User.main.uid else { return }
+        self.QRCodeView = QRCode(withMessage: createUrl(uid), correctionLevel: .H)
         userName.text = User.main.name
         companyName.text = User.main.companyName
         

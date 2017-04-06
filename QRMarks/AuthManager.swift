@@ -8,18 +8,40 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
-enum AuthType {
+@objc enum AuthType: Int {
     case logIn, signUp
+    
+    var name: String {
+        switch self {
+        case .logIn : return "Loggin In"
+        case .signUp : return "Signing Up"
+        }
+    }
+    
 }
 
-protocol AuthManagerDelegate: class {
+@objc protocol AuthManagerDelegate: class {
     
-    func authManager(_ authManager: AuthManager, wasAuthorised auth: Bool, with error: Error?, for type: AuthType)
+    /// Delegate method to be called when the Auth Manager authorises the log in / sign up
+    ///
+    /// - Parameters:
+    ///   - authManager: The AuthManager object
+    ///   - type: The authentication type, check the `AuthType` enum
+    @objc func authManager(_ authManager: AuthManager, wasAuthorisedForType type: AuthType)
+    
+    /// Delegate method to be called when authoristion fails, doesn't need to be handled.
+    ///
+    /// - Parameters:
+    ///   - authManager: The AuthManager object
+    ///   - error: The error for why the auth failed
+    ///   - type: The authentication type, check the `AuthType` enum
+    @objc optional func authManager(_ authManager: AuthManager, didFailWithError error: Error, for type: AuthType)
     
 }
 
-class AuthManager: NSObject {
+@objc class AuthManager: NSObject {
     
     /** Delegate */
     weak var delegate: AuthManagerDelegate?
@@ -67,12 +89,14 @@ extension AuthManager {
     func logIn(withEmail email: String, password: String) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(self, wasAuthorised: false, with: error, for: .logIn)
+                self.delegate?.authManager?(self, didFailWithError: error!, for: .logIn)
                 return
             }
             
             guard let user = user else {
-                self.delegate?.authManager(self, wasAuthorised: false, with: AMError.guardFail(#function, (#line - 1)), for: .logIn)
+                self.delegate?.authManager?(self,
+                                            didFailWithError: AMError(withType: .guardFail),
+                                            for: .logIn)
                 return
             }
             
@@ -84,7 +108,7 @@ extension AuthManager {
             Analytics.logLogin()
             
             self.completeCreate(user: user, withUserData: userData)
-            self.delegate?.authManager(self, wasAuthorised: true, with: nil, for: .logIn)
+            self.delegate?.authManager(self, wasAuthorisedForType: .logIn)
             return
         })
     }
@@ -93,12 +117,14 @@ extension AuthManager {
     func signUp(withEmail email: String, password: String) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                self.delegate?.authManager(self, wasAuthorised: false, with: error, for: .signUp)
+                self.delegate?.authManager?(self, didFailWithError: error!, for: .signUp)
                 return
             }
             
             guard let user = user else {
-                self.delegate?.authManager(self, wasAuthorised: false, with: AMError.guardFail(#function, #line), for: .signUp)
+                self.delegate?.authManager?(self,
+                                            didFailWithError: AMError(withType: .guardFail),
+                                            for: .signUp)
                 return
             }
             
@@ -110,7 +136,7 @@ extension AuthManager {
             Analytics.logSignUp()
             
             self.completeCreate(user: user, withUserData: userData)
-            self.delegate?.authManager(self, wasAuthorised: true, with: nil, for: .signUp)
+            self.delegate?.authManager(self, wasAuthorisedForType: .signUp)
             return
         })
     }
@@ -131,29 +157,3 @@ private extension AuthManager {
     }
 }
 
-/**
- Custom errors for when issues happen after the code passes:
- 
-        if error != nil
- 
- Inside the `FIRAuth.auth()` function calls
- */
-enum AMError: Error {
-    case guardFail(String, Int)
-}
-
-extension AMError: CustomDebugStringConvertible {
-    
-    var debugDescription: String {
-        switch self {
-        case .guardFail: return "guardFail(,)"
-        }
-    }
-    
-    var localizedDescription: String {
-        switch self {
-        case .guardFail(let function, let line):
-            return "guard statement failed at \(function) on line: \(line)"
-        }
-    }
-}

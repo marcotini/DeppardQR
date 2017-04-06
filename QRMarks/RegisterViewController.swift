@@ -111,20 +111,36 @@ class RegisterViewController: UIViewController, AuthManagerDelegate {
     
     // MARK: AuthManagerDelegate
     
-    func authManager(_ authManager: AuthManager, wasAuthorised auth: Bool, with error: Error?, for type: AuthType) {
-        NSLog("Attempting to authorise: \(authManager.uid)")
-        
-        if (!auth) || (error != nil) {
-            self.alert(forError: error)
-            return
-        }
-        
+    func authManager(_ authManager: AuthManager, wasAuthorisedForType type: AuthType) {
+        NSLog("Attempting to authorise: %@", authManager.uid!)
         if type == .logIn {
             self.dismiss(animated: true, completion: nil)
         } else {
             self.alert()
         }
     }
+    
+    func authManager(_ authManager: AuthManager, didFailWithError error: Error, for type: AuthType) {
+        NSLog("Error: \(error.localizedDescription) for type: \(type.name)")
+        error.record()
+        self.alert(forError: error)
+    }
+    
+//    func authManager(_ authManager: AuthManager, wasAuthorised auth: Bool, with error: Error?, for type: AuthType) {
+//        NSLog("Attempting to authorise: \(authManager.uid)")
+//        
+//        if (!auth) || (error != nil) {
+//            error?.record()
+//            self.alert(forError: error)
+//            return
+//        }
+//        
+//        if type == .logIn {
+//            self.dismiss(animated: true, completion: nil)
+//        } else {
+//            self.alert()
+//        }
+//    }
 }
 
 /*
@@ -240,6 +256,12 @@ extension RegisterViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @available(iOS 10.0, *)
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         print(reason)
     }

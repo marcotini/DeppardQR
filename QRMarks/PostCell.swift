@@ -9,7 +9,7 @@
 import UIKit
 import HWCollectionView
 
-class PostCell: IBCollectionViewCell {
+class PostCell: HWCollectionViewCell {
     
     @IBOutlet weak var cornerView: UIView!
     @IBOutlet weak var shadowView: UIView!

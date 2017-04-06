@@ -17,6 +17,7 @@ class UserCreationVC: ReaderViewController, CaptureSessionDelegate {
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     var cardView: UIImage?
+    var clipImageView = UIImageView()
     
     override var frameWidth: CGFloat {
         return 350
@@ -45,13 +46,22 @@ class UserCreationVC: ReaderViewController, CaptureSessionDelegate {
     }
     
     @IBAction func pressedButton(_ sender: UIButton) {
-        takePhoto()
+        if #available(iOS 10.0, *) {
+            takePhoto()
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func captureSession(didTakePhoto photo: UIImage, with error: Error?) {
         if error == nil { /* Error Handle */ }
         
-        self.dectectData(from: photo) {
+        clipImageView.image = photo
+        let image = clipImage(from: clipImageView, forRect: frameRect(frameWidth, frameHeight))
+        imageView.image = image
+        imageView.isHidden = false
+        
+        self.dectectData(from: image) {
             self.captureSession?.stopRunning()
             self.view.bringSubview(toFront: self.backGroundView)
             
@@ -71,6 +81,20 @@ class UserCreationVC: ReaderViewController, CaptureSessionDelegate {
         guard let output = tesseract?.recognizedText else { return nil }
         print(output as Any)
         return output
+    }
+    
+    func clipImage(from imageView: UIImageView, forRect rect: CGRect) -> UIImage? {
+        let path = UIBezierPath(rect: rect)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        imageView.layer.mask = shapeLayer
+        
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image2: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image2
     }
     
     func dectectData(from image: UIImage?, _ finish: @escaping Detecting) {
